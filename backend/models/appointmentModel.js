@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema
 
-const nailSchema = new Schema({
+const appointmentSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -17,4 +17,4 @@ const nailSchema = new Schema({
   }
 }, {timestamps: true})
 
-module.exports = mongoose.model('Nail', nailSchema)
+module.exports = mongoose.model('Appointment', appointmentSchema)
