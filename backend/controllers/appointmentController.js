@@ -2,7 +2,7 @@ const { default: mongoose } = require('mongoose');
 const Appointment = require('../models/appointmentModel');
 
 const getAppointments = async (req, res) => {
-  const appointments = await Appointment.find({});
+  const appointments = await Appointment.find({}).populate('customerId').exec();
 
   res.status(200).json(appointments);
 };
@@ -24,9 +24,9 @@ const getAppointment = async (req, res) => {
 };
 
 const createAppointment = async (req, res) => {
-  const { title, length, price } = req.body;
+  const { title, length, price, customerId, masterId } = req.body;
   try {
-    const appointment = await Appointment.create({ title, length, price });
+    const appointment = await Appointment.create({ title, length, price, customerId, masterId });
     res.status(200).json(appointment);
   } catch (error) {
     res.status(400).json({ error: error.message });
