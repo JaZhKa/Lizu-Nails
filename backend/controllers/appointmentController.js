@@ -24,9 +24,47 @@ const getAppointment = async (req, res) => {
 };
 
 const createAppointment = async (req, res) => {
-  const { title, length, price, customerId, masterId } = req.body;
+  const {
+    title,
+    totalPrice,
+    price,
+    customerId,
+    masterId,
+    date,
+    isConfirm,
+    serviceType,
+    serviceTitle,
+    serviceDescription,
+    servicePrice,
+    serviceDuration,
+    addServiceType,
+    addServiceTitle,
+    addServiceDescription,
+    addServicePrice,
+  } = req.body;
   try {
-    const appointment = await Appointment.create({ title, length, price, customerId, masterId });
+    const appointment = await Appointment.create({
+      title,
+      totalPrice,
+      price,
+      customerId,
+      masterId,
+      date,
+      isConfirm,
+      services: {
+        serviceType,
+        serviceTitle,
+        serviceDescription,
+        servicePrice,
+        serviceDuration,
+        additionalService: {
+          addServiceType,
+          addServiceTitle,
+          addServiceDescription,
+          addServicePrice,
+        },
+      },
+    });
     res.status(200).json(appointment);
   } catch (error) {
     res.status(400).json({ error: error.message });
