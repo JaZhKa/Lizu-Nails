@@ -47,6 +47,13 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    courses: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Course',
+      },
+    ],
+    img: String,
   },
   { timestamps: true }
 );
@@ -57,7 +64,8 @@ userSchema.statics.signup = async function (
   name,
   role,
   sex,
-  contacts
+  contacts,
+  img
 ) {
   if (!email || !password) {
     throw Error('All fields must be filled');
@@ -84,6 +92,7 @@ userSchema.statics.signup = async function (
     role,
     sex,
     contacts,
+    img,
   });
 
   return user;
