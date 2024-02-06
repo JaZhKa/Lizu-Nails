@@ -22,10 +22,9 @@ const appointmentSchema = new Schema(
       ref: 'User',
       require: true,
     },
-    date: {
-      type: Date,
-      default: Date.now,
-      require: true,
+    scheduleId: {
+      type:Schema.Types.ObjectId,
+      ref: 'Schedule'
     },
     isConfirm: {
       type: Boolean,
@@ -45,7 +44,7 @@ const appointmentSchema = new Schema(
         type: String,
         require: true,
       },
-      erviceDescription: {
+      serviceDescription: {
         type: String,
       },
       servicePrice: {

@@ -80,7 +80,7 @@ const updateCourse = async (req, res) => {
     }
   );
 
-  if (!Course) {
+  if (!course) {
     return res.status(400).json({ error: 'No such course' });
   }
 

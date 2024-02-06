@@ -30,7 +30,7 @@ const createAppointment = async (req, res) => {
     price,
     customerId,
     masterId,
-    date,
+    scheduleId,
     isConfirm,
     serviceType,
     serviceTitle,
@@ -49,7 +49,7 @@ const createAppointment = async (req, res) => {
       price,
       customerId,
       masterId,
-      date,
+      scheduleId,
       isConfirm,
       services: {
         serviceType,
