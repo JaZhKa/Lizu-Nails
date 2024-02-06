@@ -55,7 +55,7 @@ const updateSchedule = async (req, res) => {
     return res.status(400).json({ error: 'Schedule is no exist' });
   }
 
-  res.status(200).json(Schedule);
+  res.status(200).json(schedule);
 };
 
 const deleteSchedule = async (req, res) => {
