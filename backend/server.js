@@ -7,6 +7,7 @@ const appointmentRoutes = require('./routes/appointmentRoute');
 const courseRoutes = require('./routes/courseRoute');
 const scheduleRoutes = require('./routes/scheduleRoute');
 const certificateRoutes = require('./routes/certificateRoute');
+const serviceRoutes = require('./routes/serviceRoute');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/api/appointment', appointmentRoutes);
 app.use('/api/course', courseRoutes);
 app.use('/api/schedule', scheduleRoutes);
 app.use('/api/certificate', certificateRoutes);
+app.use('/api/service', serviceRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)

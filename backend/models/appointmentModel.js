@@ -23,8 +23,8 @@ const appointmentSchema = new Schema(
       require: true,
     },
     scheduleId: {
-      type:Schema.Types.ObjectId,
-      ref: 'Schedule'
+      type: Schema.Types.ObjectId,
+      ref: 'Schedule',
     },
     isConfirm: {
       type: Boolean,
@@ -34,42 +34,9 @@ const appointmentSchema = new Schema(
     totalDuration: {
       type: Number,
     },
-    services: {
-      serviceType: {
-        type: String,
-        enum: ['Маникюр', 'Педикюр'],
-        require: true,
-      },
-      serviceTitle: {
-        type: String,
-        require: true,
-      },
-      serviceDescription: {
-        type: String,
-      },
-      servicePrice: {
-        type: Number,
-        require: true,
-      },
-      serviceDuration: {
-        type: Number,
-      },
-      additionalService: {
-        addServiceType: {
-          type: String,
-        },
-        addServiceTitle: {
-          type: String,
-          require: true,
-        },
-        addServiceDescription: {
-          type: String,
-        },
-        addServicePrice: {
-          type: Number,
-          require: true,
-        },
-      },
+    service: {
+      type: Schema.Types.ObjectId,
+      ref: 'Service',
     },
   },
   { timestamps: true }
