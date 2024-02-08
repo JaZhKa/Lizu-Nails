@@ -3,14 +3,14 @@ const AppointmentController = require('../controllers/appointmentController');
 
 const router = express.Router();
 
-router.get('/', AppointmentController.getAll);
+router.get('/', new AppointmentController().getAll);
 
-router.get('/:id', AppointmentController.getOne);
+router.get('/:id', new AppointmentController().getOne);
 
-router.post('/', AppointmentController.create);
+router.post('/', new AppointmentController().create);
 
-router.patch('/:id', AppointmentController.update);
+router.patch('/:id', new AppointmentController().update);
 
-router.delete('/:id', AppointmentController.delete);
+router.delete('/:id', new AppointmentController().delete);
 
 module.exports = router;

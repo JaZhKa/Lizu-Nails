@@ -7,4 +7,4 @@ class AppointmentService extends BaseService {
   }
 }
 
-module.exports = new AppointmentService();
+module.exports = AppointmentService;
