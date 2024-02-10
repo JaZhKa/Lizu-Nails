@@ -21,12 +21,10 @@ const certificateSchema = new Schema(
         return expirationDate.setMonth(date.getMonth() + 3);
       },
     },
-    service: [
-      {
-        type: String,
-        require: true,
-      },
-    ],
+    service: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Service'
+    }],
     price: {
       type: Number,
       require: true,

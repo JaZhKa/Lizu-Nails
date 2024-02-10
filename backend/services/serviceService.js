@@ -7,4 +7,4 @@ class ServiceService extends BaseService {
   }
 }
 
-module.exports = new ServiceService();
+module.exports = ServiceService;

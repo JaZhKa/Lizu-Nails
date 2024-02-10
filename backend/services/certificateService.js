@@ -7,4 +7,4 @@ class CertificateService extends BaseService {
   }
 }
 
-module.exports = new CertificateService();
+module.exports = CertificateService;

@@ -7,4 +7,4 @@ class ScheduleService extends BaseService {
   }
 }
 
-module.exports = new ScheduleService();
+module.exports = ScheduleService;

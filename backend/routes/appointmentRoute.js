@@ -10,15 +10,3 @@ router.patch('/:id', (req, res) => AppointmentController.update(req, res));
 router.delete('/:id', (req, res) => AppointmentController.delete(req, res));
 
 module.exports = router;
-
-
-// const BaseRoute = require('./baseRoute');
-// const AppointmentController = require('../controllers/appointmentController');
-
-// class AppointmentRouter extends BaseRoute {
-//   constructor() {
-//     super(AppointmentController);
-//   }
-// }
-
-// module.exports = new AppointmentRouter();
