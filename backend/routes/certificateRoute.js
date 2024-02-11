@@ -1,12 +1,18 @@
-const express = require('express');
+const BaseRouter = require('./baseRouter');
 const CertificateController = require('../controllers/certificateController');
 
-const router = express.Router();
+class CertificateRouter extends BaseRouter {
+  constructor() {
+    super(CertificateController);
+  }
 
-router.get('/', (req, res) => CertificateController.getAll(req, res));
-router.get('/:id', (req, res) => CertificateController.getOne(req, res));
-router.post('/', (req, res) => CertificateController.create(req, res));
-router.patch('/:id', (req, res) => CertificateController.update(req, res));
-router.delete('/:id', (req, res) => CertificateController.delete(req, res));
+  setupRoutes() {
+    this.getAll('/', this.controller.getAll);
+    this.getOne('/:id', this.controller.getOne);
+    this.post('/', this.controller.create);
+    this.patch('/:id', this.controller.update);
+    this.delete('/:id', this.controller.delete);
+  }
+}
 
-module.exports = router;
+module.exports = CertificateRouter;

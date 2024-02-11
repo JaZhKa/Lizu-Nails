@@ -1,12 +1,18 @@
-const express = require('express');
+const BaseRouter = require('./baseRouter');
 const ScheduleController = require('../controllers/scheduleController');
 
-const router = express.Router();
+class ScheduleRouter extends BaseRouter {
+  constructor() {
+    super(ScheduleController);
+  }
 
-router.get('/', (req, res) => ScheduleController.getAll(req, res));
-router.get('/:id', (req, res) => ScheduleController.getOne(req, res));
-router.post('/', (req, res) => ScheduleController.create(req, res));
-router.patch('/:id', (req, res) => ScheduleController.update(req, res));
-router.delete('/:id', (req, res) => ScheduleController.delete(req, res));
+  setupRoutes() {
+    this.getAll('/', this.controller.getAll);
+    this.getOne('/:id', this.controller.getOne);
+    this.post('/', this.controller.create);
+    this.patch('/:id', this.controller.update);
+    this.delete('/:id', this.controller.delete);
+  }
+}
 
-module.exports = router;
+module.exports = ScheduleRouter;

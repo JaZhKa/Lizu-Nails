@@ -1,12 +1,18 @@
-const express = require('express');
+const BaseRouter = require('./baseRouter');
 const ServiceController = require('../controllers/serviceController');
 
-const router = express.Router();
+class ServiceRouter extends BaseRouter {
+  constructor() {
+    super(ServiceController);
+  }
 
-router.get('/', (req, res) => ServiceController.getAll(req, res));
-router.get('/:id', (req, res) => ServiceController.getOne(req, res));
-router.post('/', (req, res) => ServiceController.create(req, res));
-router.patch('/:id', (req, res) => ServiceController.update(req, res));
-router.delete('/:id', (req, res) => ServiceController.delete(req, res));
+  setupRoutes() {
+    this.getAll('/', this.controller.getAll);
+    this.getOne('/:id', this.controller.getOne);
+    this.post('/', this.controller.create);
+    this.patch('/:id', this.controller.update);
+    this.delete('/:id', this.controller.delete);
+  }
+}
 
-module.exports = router;
+module.exports = ServiceRouter;

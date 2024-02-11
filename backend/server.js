@@ -3,11 +3,11 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoute');
-const appointmentRoutes = require('./routes/appointmentRoute');
-const courseRoutes = require('./routes/courseRoute');
-const scheduleRoutes = require('./routes/scheduleRoute');
-const certificateRoutes = require('./routes/certificateRoute');
-const serviceRoutes = require('./routes/serviceRoute');
+const AppointmentRouter = require('./routes/appointmentRoute');
+const CertificateRouter = require('./routes/certificateRoute');
+const CourseRouter = require('./routes/courseRoute');
+const ScheduleRouter = require('./routes/scheduleRoute');
+const ServiceRouter = require('./routes/serviceRoute');
 
 const app = express();
 
@@ -19,11 +19,26 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/user', userRoutes);
-app.use('/api/appointment', appointmentRoutes);
-app.use('/api/course', courseRoutes);
-app.use('/api/schedule', scheduleRoutes);
-app.use('/api/certificate', certificateRoutes);
-app.use('/api/service', serviceRoutes);
+
+const appointmentRouter = new AppointmentRouter();
+appointmentRouter.setupRoutes();
+app.use('/api/appointment', appointmentRouter.router);
+
+const certificateRouter = new CertificateRouter();
+certificateRouter.setupRoutes();
+app.use('/api/certificate', certificateRouter.router);
+
+const courseRouter = new CourseRouter();
+courseRouter.setupRoutes();
+app.use('/api/course', courseRouter.router);
+
+const scheduleRouter = new ScheduleRouter();
+scheduleRouter.setupRoutes();
+app.use('/api/schedule', scheduleRouter.router);
+
+const serviceRouter = new ServiceRouter();
+serviceRouter.setupRoutes();
+app.use('/api/service', serviceRouter.router);
 
 mongoose
   .connect(process.env.MONGO_URI)
