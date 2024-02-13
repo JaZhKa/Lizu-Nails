@@ -1,43 +1,30 @@
-const User = require('../models/userModel');
-const jwt = require('jsonwebtoken');
+const BaseController = require('./baseController');
+const UserService = require('../services/userService');
 
-const createToken = (_id) => {
-  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '30d' });
-};
-
-const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const user = await User.login(email, password);
-
-    const token = createToken(user._id);
-
-    res.status(200).json({ email, token });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
+class UserController extends BaseController {
+  constructor() {
+    super(new UserService());
   }
-};
 
-const singupUser = async (req, res) => {
-  const { email, password, name, role, sex, contacts, img } = req.body;
-
-  try {
-    const user = await User.signup(
-      email,
-      password,
-      name,
-      role,
-      sex,
-      contacts,
-      img
-    );
-    const token = createToken(user._id);
-
-    res.status(200).json({ email, token });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
+  async singUp(req, res) {
+    const data = req.body;
+    try {
+      const user = await this.service.signUp(data);
+      res.status(200).json({email: user.user.email, token: user.token});
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
   }
-};
 
-module.exports = { singupUser, loginUser };
+  async logIn(req, res) {
+    const data = req.body;
+    try {
+      const user = await this.service.logIn(data.email, data.password);
+      res.status(200).json({ user: user.user, token: user.token });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+}
+
+module.exports = new UserController();

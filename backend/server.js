@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const userRoutes = require('./routes/userRoute');
+const UserRouter = require('./routes/userRoute');
 const AppointmentRouter = require('./routes/appointmentRoute');
 const CertificateRouter = require('./routes/certificateRoute');
 const CourseRouter = require('./routes/courseRoute');
@@ -18,7 +18,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/user', userRoutes);
+const userRouter = new UserRouter();
+userRouter.setupRoutes();
+app.use('/api/user', userRouter.router);
 
 const appointmentRouter = new AppointmentRouter();
 appointmentRouter.setupRoutes();
