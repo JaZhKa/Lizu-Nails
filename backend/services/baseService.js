@@ -5,9 +5,10 @@ class BaseService {
     this.model = model;
   }
 
-  async getAll() {
+  async getAll(page) {
     try {
-      return await this.model.find();
+      const pageSize = 10;
+      return await this.model.find({}).sort({createdAt: -1}).limit(pageSize).skip(page * pageSize);
     } catch (error) {
       throw error;
     }
