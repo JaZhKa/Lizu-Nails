@@ -1,9 +1,11 @@
 import Header from "./components/Header";
+import Button from "./components/elements/Button";
 
 function App() {
   return (
     <div>
       <Header />
+      <Button>Button</Button>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iste
         ipsam atque eligendi veniam magnam adipisci quibusdam fuga porro sed
