@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AnchorsUl from "./AnchorsUl";
 
 const Burger = () => {
   const [isActive, setIsActive] = useState(false);
@@ -17,12 +18,7 @@ const Burger = () => {
           (isActive ? " h-fit" : " h-0 -translate-y-96 opacity-0")
         }
       >
-        <ul className="m-12 flex flex-col items-center gap-4">
-          <li>Lorem ipsum dolor</li>
-          <li>Lorem ipsum dolor</li>
-          <li>Lorem ipsum dolor</li>
-          <li>Lorem ipsum dolor</li>
-        </ul>
+      <AnchorsUl />
       </nav>
     </>
   );
