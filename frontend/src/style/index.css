@@ -1,1 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@layer components {
+  .burger {
+    display: block;
+    position: relative;
+    width: 3rem;
+    height: 1.8rem;
+    cursor: pointer;
+    z-index: 50;
+    &::before,
+    &::after {
+      content: "";
+      background-color: theme(colors.gray-dark);
+      position: absolute;
+      width: 70%;
+      height: 2px;
+      left: 0;
+      transition: 0.2s;
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+    }
+  }
+  .burger.active {
+    &::before {
+      transform: rotate(45deg);
+      top: 13px;
+      transition: 0.2s;
+    }
+    &::after {
+      transform: rotate(-45deg);
+      bottom: 13px;
+      transition: 0.2s;
+    }
+  }
+  .burger > span {
+    background-color: theme(colors.gray-dark);
+    position: absolute;
+    width: 70%;
+    height: 2px;
+    left: 0;
+    top: 0.84rem;
+    transition: 0.2s;
+  }
+  .burger.active > span {
+    transform: scale(0);
+    transition: 0.2s;
+  }
+}

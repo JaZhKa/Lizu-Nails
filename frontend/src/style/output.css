@@ -16,7 +16,7 @@
   /* 2 */
   border-style: solid;
   /* 2 */
-  border-color: #e5e7eb;
+  border-color: currentColor;
   /* 2 */
 }
 
@@ -46,7 +46,7 @@ html,
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: Manrope, sans-serif;
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -544,20 +544,267 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+.burger {
+  display: block;
+  position: relative;
+  width: 3rem;
+  height: 1.8rem;
+  cursor: pointer;
+  z-index: 50;
+  &::before,
+    &::after {
+    content: "";
+    background-color: #212529;
+    position: absolute;
+    width: 70%;
+    height: 2px;
+    left: 0;
+    transition: 0.2s;
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    bottom: 0;
+  }
 }
 
-.italic {
-  font-style: italic;
+.burger.active {
+  &::before {
+    transform: rotate(45deg);
+    top: 13px;
+    transition: 0.2s;
+  }
+  &::after {
+    transform: rotate(-45deg);
+    bottom: 13px;
+    transition: 0.2s;
+  }
 }
 
-.text-slate-500 {
-  --tw-text-opacity: 1;
-  color: rgb(100 116 139 / var(--tw-text-opacity));
+.burger > span {
+  background-color: #212529;
+  position: absolute;
+  width: 70%;
+  height: 2px;
+  left: 0;
+  top: 0.84rem;
+  transition: 0.2s;
 }
 
-.underline {
-  text-decoration-line: underline;
+.burger.active > span {
+  transform: scale(0);
+  transition: 0.2s;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.top-\[56px\] {
+  top: 56px;
+}
+
+.top-\[55px\] {
+  top: 55px;
+}
+
+.top-\[50px\] {
+  top: 50px;
+}
+
+.top-\[10px\] {
+  top: 10px;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.m-12 {
+  margin: 3rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.h-2 {
+  height: 0.5rem;
+}
+
+.h-\[56px\] {
+  height: 56px;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-\[90\%\] {
+  height: 90%;
+}
+
+.h-\[100vh\] {
+  height: 100vh;
+}
+
+.h-\[100\%\] {
+  height: 100%;
+}
+
+.h-96 {
+  height: 24rem;
+}
+
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.h-0 {
+  height: 0px;
+}
+
+.w-48 {
+  width: 12rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.-translate-y-96 {
+  --tw-translate-y: -24rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.grid-flow-row-dense {
+  grid-auto-flow: row dense;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-rows-2 {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.bg-gray-light\/30 {
+  background-color: rgb(206 212 218 / 0.3);
+}
+
+.bg-gray-light\/20 {
+  background-color: rgb(206 212 218 / 0.2);
+}
+
+.bg-gray-light\/10 {
+  background-color: rgb(206 212 218 / 0.1);
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.backdrop-blur-sm {
+  --tw-backdrop-blur: blur(4px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-700 {
+  transition-duration: 700ms;
+}
+
+.ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:w-60 {
+    width: 15rem;
+  }
+
+  .md\:p-4 {
+    padding: 1rem;
+  }
 }
