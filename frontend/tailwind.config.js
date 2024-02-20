@@ -16,8 +16,7 @@ export default {
       'pink': '#FFDEEB',
     },
     fontFamily: {
-      sans: ['Manrope', 'sans-serif'],
-      serif: ['Manrope', 'serif'],
+      manrope: ['Manrope', 'serif'],
     },
     extend: {},
   },
