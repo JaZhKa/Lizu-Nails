@@ -4,7 +4,7 @@ function App() {
   return (
     <div>
       <Header />
-      <p className="sans">
+      <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iste
         ipsam atque eligendi veniam magnam adipisci quibusdam fuga porro sed
         cupiditate deserunt deleniti, assumenda voluptas accusamus. Vel eos

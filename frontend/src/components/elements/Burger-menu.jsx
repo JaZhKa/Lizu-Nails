@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleActive } from "./../../store/active/isActive";
 import AnchorsUl from "./AnchorsUl";
 
 const Burger = () => {
-  const [isActive, setIsActive] = useState(false);
+  const isActive = useSelector((state) => state.isActive.value);
+  const dispatch = useDispatch();
 
   return (
     <>
       <nav
         className={"burger md:hidden" + (isActive ? " active" : "")}
-        onClick={() => setIsActive(!isActive)}
+        onClick={() => dispatch(toggleActive())}
       >
         <span></span>
       </nav>
@@ -18,7 +20,7 @@ const Burger = () => {
           (isActive ? " h-fit" : " h-0 -translate-y-96 opacity-0")
         }
       >
-      <AnchorsUl />
+        <AnchorsUl />
       </nav>
     </>
   );

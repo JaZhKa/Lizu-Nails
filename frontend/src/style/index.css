@@ -19,7 +19,7 @@
     &::before,
     &::after {
       content: "";
-      background-color: theme(colors.gray-dark);
+      background-color: theme(colors.primary);
       position: absolute;
       width: 70%;
       height: 2px;
@@ -46,7 +46,7 @@
     }
   }
   .burger > span {
-    background-color: theme(colors.gray-dark);
+    background-color: theme(colors.primary);
     position: absolute;
     width: 70%;
     height: 2px;

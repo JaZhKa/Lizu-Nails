@@ -10,10 +10,10 @@ export default {
       xl: "1440px",
     },
     colors: {
-      'gray-dark': '#212529',
-      'gray': '#343A40',
-      'gray-light': '#CED4DA',
-      'pink': '#FFDEEB',
+      'text-color': '#212529',
+      'primary': '#343A40',
+      'secondary': '#CED4DA',
+      'accent': '#FFDEEB',
     },
     fontFamily: {
       manrope: ['Manrope', 'serif'],
