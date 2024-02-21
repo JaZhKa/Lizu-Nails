@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toggleActive } from "./../../store/active/isActive";
-import AnchorsUl from "./AnchorsUl";
+import Anchor from "./Anchor";
 
 const Burger = () => {
   const isActive = useSelector((state) => state.isActive.value);
@@ -20,7 +20,20 @@ const Burger = () => {
           (isActive ? " h-fit" : " h-0 -translate-y-96 opacity-0")
         }
       >
-        <AnchorsUl />
+      <ul className="m-12 flex flex-col items-center gap-4">
+      <li>
+        <Anchor href={"#"}>Главная</Anchor>
+      </li>
+      <li>
+        <Anchor href={"#"}>Обучение</Anchor>
+      </li>
+      <li>
+        <Anchor href={"#"}>Галерея</Anchor>
+      </li>
+      <li>
+        <Anchor href={"#"}>Обо мне</Anchor>
+      </li>
+    </ul>
       </nav>
     </>
   );
