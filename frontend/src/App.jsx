@@ -1,10 +1,12 @@
 import Header from "./components/Header";
+import { useSelector } from "react-redux";
 
 function App() {
+  const isActive = useSelector((state) => state.isActive.value);
   return (
     <div>
       <Header />
-      <p>
+      <p className={isActive ? "-mt-64" : "mt-0"}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iste
         ipsam atque eligendi veniam magnam adipisci quibusdam fuga porro sed
         cupiditate deserunt deleniti, assumenda voluptas accusamus. Vel eos
