@@ -10,13 +10,13 @@ export default {
       xl: "1440px",
     },
     colors: {
-      'text-color': '#212529',
-      'primary': '#343A40',
-      'secondary': '#CED4DA',
-      'accent': '#FFDEEB',
+      "text-color": "#212529",
+      primary: "#343A40",
+      secondary: "#CED4DA",
+      accent: "#FFDEEB",
     },
     fontFamily: {
-      manrope: ['Manrope', 'serif'],
+      manrope: ["Manrope", "serif"],
     },
     extend: {},
   },

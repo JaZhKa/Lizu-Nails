@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="bg-text-color mt-5 grid grid-cols-2 items-center p-5">
+    <footer className="bottom-0 bg-text-color mt-5 grid grid-cols-2 items-center p-5">
       <div className="grid grid-rows-2 gap-6">
         <p className="text-secondary text-xs">
           Адрес: г. Минск, пер. Добромысленский, д.3.
