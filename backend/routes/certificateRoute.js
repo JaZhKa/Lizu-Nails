@@ -1,5 +1,7 @@
 const BaseRouter = require('./baseRouter');
 const CertificateController = require('../controllers/certificateController');
+const requireAuth = require('../middleware/requireAuth');
+
 
 class CertificateRouter extends BaseRouter {
   constructor() {
@@ -7,6 +9,7 @@ class CertificateRouter extends BaseRouter {
   }
 
   setupRoutes() {
+    this.router.use(requireAuth);
     this.getAll('/', this.controller.getAll);
     this.getOne('/:id', this.controller.getOne);
     this.post('/', this.controller.create);

@@ -1,5 +1,6 @@
 const BaseRouter = require('./baseRouter');
 const CourseController = require('../controllers/courseController');
+const requireAuth = require('../middleware/requireAuth');
 
 class CourseRouter extends BaseRouter {
   constructor() {
@@ -7,6 +8,7 @@ class CourseRouter extends BaseRouter {
   }
 
   setupRoutes() {
+    this.router.use(requireAuth);
     this.getAll('/', this.controller.getAll);
     this.getOne('/:id', this.controller.getOne);
     this.post('/', this.controller.create);

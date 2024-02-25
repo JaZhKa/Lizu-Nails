@@ -2,7 +2,9 @@ import Header from "./components/Header";
 import { useSelector } from "react-redux";
 import Footer from "./components/Footer";
 import { Route, Routes } from "react-router-dom";
-import Button from "./components/elements/Button";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   const isActive = useSelector((state) => state.isActive.value);
@@ -11,11 +13,13 @@ function App() {
       <Header />
       <main
         className={
-          "min-h-[calc(100dvh_-_212px)]" + (isActive ? " -mt-64" : " mt-0")
+          "min-h-[calc(100dvh_-_212px)] flex items-center justify-center" + (isActive ? " -mt-[18.7rem]" : " mt-0")
         }
       >
         <Routes>
-          <Route path="/" element={<Button />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </main>
       <Footer />

@@ -8,10 +8,12 @@ const CertificateRouter = require('./routes/certificateRoute');
 const CourseRouter = require('./routes/courseRoute');
 const ScheduleRouter = require('./routes/scheduleRoute');
 const ServiceRouter = require('./routes/serviceRoute');
+const cors = require('cors');
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);

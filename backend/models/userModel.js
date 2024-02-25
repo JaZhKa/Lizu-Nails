@@ -29,11 +29,6 @@ const userSchema = new Schema(
       default: 'customer',
       require: true,
     },
-    sex: {
-      type: String,
-      enum: ['male', 'female'],
-      default: 'female',
-    },
     contacts: {
       phoneNumber: {
         type: String,
@@ -42,10 +37,6 @@ const userSchema = new Schema(
       intagramNickname: {
         type: String,
       },
-    },
-    isDeleted: {
-      type: Boolean,
-      default: false,
     },
     courses: [
       {

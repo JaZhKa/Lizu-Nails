@@ -14,6 +14,8 @@ export default {
       primary: "#343A40",
       secondary: "#CED4DA",
       accent: "#FFDEEB",
+      error: "#dc2626",
+      warning: "#fde047",
     },
     fontFamily: {
       manrope: ["Manrope", "serif"],
