@@ -39,7 +39,7 @@ const Burger = () => {
             <Anchor to={"#"}>Галерея</Anchor>
           </li>
           <li>
-            <Anchor to={"#"}>Обо мне</Anchor>
+            <Anchor to={"#"}>О нас</Anchor>
           </li>
           {user ? (
             <button
