@@ -8,6 +8,12 @@
   src: url("../style/fonts/Manrope-VariableFont_wght.ttf");
 }
 
+@layer base {
+  html {
+    font-family: "Manrope", sans-serif;
+  }
+}
+
 @layer components {
   .burger {
     display: block;
@@ -57,5 +63,16 @@
   .burger.active > span {
     transform: scale(0);
     transition: 0.2s;
+  }
+}
+
+@layer components {
+  .radial {
+    height: 25em;
+    background-image: radial-gradient(
+      ellipse 50% 260%,
+      #ffffff 10%,
+      rgb(255, 255, 255, 0) 100%
+    );
   }
 }

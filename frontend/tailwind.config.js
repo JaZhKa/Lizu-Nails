@@ -18,7 +18,7 @@ export default {
       warning: "#fde047",
     },
     fontFamily: {
-      manrope: ["Manrope", "serif"],
+      manrope: ['"Manrope"', "sans-serif"],
     },
     extend: {},
   },
