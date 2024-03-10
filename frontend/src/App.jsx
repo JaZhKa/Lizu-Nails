@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Gallery from "./pages/Gallery";
 
 function App() {
   const isActive = useSelector((state) => state.isActive.value);
@@ -13,11 +14,13 @@ function App() {
       <Header />
       <main
         className={
-          "min-h-[calc(100dvh_-_212px)] flex items-center justify-center" + (isActive ? " -mt-[18.7rem]" : " mt-0")
+          "flex min-h-[calc(100dvh_-_212px)] items-center justify-center" +
+          (isActive ? " -mt-[18.7rem]" : " mt-0")
         }
       >
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

@@ -658,6 +658,10 @@ html {
   z-index: 10;
 }
 
+.-z-10 {
+  z-index: -10;
+}
+
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -719,6 +723,10 @@ html {
   margin-bottom: 4rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -729,6 +737,10 @@ html {
 
 .mb-8 {
   margin-bottom: 2rem;
+}
+
+.ml-8 {
+  margin-left: 2rem;
 }
 
 .mt-0 {
@@ -743,12 +755,8 @@ html {
   margin-top: 1.25rem;
 }
 
-.ml-8 {
-  margin-left: 2rem;
-}
-
-.mb-2 {
-  margin-bottom: 0.5rem;
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .block {
@@ -779,10 +787,6 @@ html {
   height: 66.666667%;
 }
 
-.h-96 {
-  height: 24rem;
-}
-
 .h-\[256px\] {
   height: 256px;
 }
@@ -800,8 +804,12 @@ html {
   height: 100%;
 }
 
-.h-1\/2 {
-  height: 50%;
+.h-96 {
+  height: 24rem;
+}
+
+.h-64 {
+  height: 16rem;
 }
 
 .min-h-\[calc\(100dvh_-_212px\)\] {
@@ -841,8 +849,12 @@ html {
   width: 100%;
 }
 
-.w-1\/2 {
-  width: 50%;
+.w-96 {
+  width: 24rem;
+}
+
+.w-64 {
+  width: 16rem;
 }
 
 .-translate-y-96 {
@@ -850,12 +862,24 @@ html {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.grid-flow-row {
+  grid-auto-flow: row;
+}
+
 .grid-flow-col {
   grid-auto-flow: column;
 }
 
+.grid-flow-dense {
+  grid-auto-flow: dense;
+}
+
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-rows-2 {
@@ -914,6 +938,10 @@ html {
   gap: 2rem;
 }
 
+.gap-20 {
+  gap: 5rem;
+}
+
 .gap-y-16 {
   row-gap: 4rem;
 }
@@ -925,11 +953,6 @@ html {
 .border-text-color {
   --tw-border-opacity: 1;
   border-color: rgb(33 37 41 / var(--tw-border-opacity));
-}
-
-.bg-accent {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 222 235 / var(--tw-bg-opacity));
 }
 
 .bg-primary {
@@ -1002,6 +1025,10 @@ html {
   padding-bottom: 2px;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1034,6 +1061,11 @@ html {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
 }
 
 .text-error {
@@ -1086,8 +1118,28 @@ html {
   transition-duration: 300ms;
 }
 
+.duration-500 {
+  transition-duration: 500ms;
+}
+
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.hover\:-z-10:hover {
+  z-index: -10;
+}
+
+.hover\:scale-125:hover {
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:scale-110:hover {
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .hover\:border-y-2:hover {
@@ -1117,6 +1169,18 @@ html {
 .hover\:text-text-color:hover {
   --tw-text-opacity: 1;
   color: rgb(33 37 41 / var(--tw-text-opacity));
+}
+
+.hover\:shadow-lg:hover {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.hover\:shadow-2xl:hover {
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .focus\:border-y-2:focus {
@@ -1230,6 +1294,14 @@ html {
     width: 100%;
   }
 
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -1252,6 +1324,10 @@ html {
 
   .md\:p-4 {
     padding: 1rem;
+  }
+
+  .md\:text-left {
+    text-align: left;
   }
 
   .md\:text-right {
@@ -1282,9 +1358,18 @@ html {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
+
+  .md\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
 }
 
 @media (min-width: 976px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .lg\:gap-20 {
     gap: 5rem;
   }

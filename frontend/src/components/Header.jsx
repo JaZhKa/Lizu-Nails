@@ -12,7 +12,7 @@ const Header = () => {
   };
   return (
     <>
-      <header className="bg-secondary/30 sticky top-0 flex w-full flex-wrap md:justify-around items-center justify-between backdrop-blur-sm transition-all duration-300 ease-out">
+      <header className="sticky top-0 flex w-full flex-wrap items-center justify-between bg-secondary/30 backdrop-blur-sm transition-all duration-300 ease-out md:justify-around">
         <Logo />
         <nav className="hidden md:block">
           <ul className="flex gap-8">
@@ -23,14 +23,14 @@ const Header = () => {
               <Anchor to={"#"}>Обучение</Anchor>
             </li>
             <li>
-              <Anchor to={"#"}>Галерея</Anchor>
+              <Anchor to={"/gallery"}>Галерея</Anchor>
             </li>
             <li>
               <Anchor to={"#"}>О нас</Anchor>
             </li>
             {user ? (
               <button
-                className="border-text-color text-text-color block w-fit py-[2px] hover:border-y-2 hover:border-solid hover:py-0 focus:border-y-2 focus:border-solid focus:py-0"
+                className="block w-fit border-text-color py-[2px] text-text-color hover:border-y-2 hover:border-solid hover:py-0 focus:border-y-2 focus:border-solid focus:py-0"
                 onClick={handlerLogout}
               >
                 Выход
