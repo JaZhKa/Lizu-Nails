@@ -25,28 +25,33 @@ const Login = () => {
       </label>
       <input
         disabled={!isLoaded}
-        className="disabled:text-secondary text-text-color focus:outline-secondary bg-secondary/50 h-10 w-9/12 px-2 md:w-full"
+        className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
         type="email"
+        autoComplete="username"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
         id="login-email"
       />
-      <label htmlFor="login-password" className="text-text-color">
+      <label
+        htmlFor="login-password"
+        className="text-text-color"
+      >
         Пароль
       </label>
       <input
         disabled={!isLoaded}
-        className="disabled:text-secondary text-text-color focus:outline-secondary bg-secondary/50 h-10 w-9/12 px-2 md:w-full"
+        className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
         type="password"
+        autoComplete="current-password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
         id="login-password"
       />
-      <div className="flex justify-between w-9/12 md:w-80">
+      <div className="flex w-9/12 justify-between md:w-80">
         <Button disabled={!isLoaded}>Войти</Button>
         <Anchor to={"/signup"}>Регистрация</Anchor>
       </div>
-      {error && <p className="text-error text-xs">{error}</p>}
+      {error && <p className="text-xs text-error">{error}</p>}
     </form>
   );
 };

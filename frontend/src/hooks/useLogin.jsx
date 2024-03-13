@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const { dispatch } = useAuthContext();
-  const [, setCookie] = useCookies("");
+  const [cookie, setCookie] = useCookies("");
   const changeLoaded = useDispatch();
   const navigate = useNavigate();
 

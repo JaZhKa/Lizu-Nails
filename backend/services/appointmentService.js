@@ -7,6 +7,15 @@ class AppointmentService extends BaseService {
     super(Appointment);
   }
 
+  async getAll(page) {
+    try {
+      const pageSize = 10;
+      return await this.model.find({}).populate(['customerId', 'masterId', 'scheduleId', 'service']).sort({createdAt: -1}).limit(pageSize).skip(page * pageSize);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async getOne(id) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new Error('Invalid ID format');

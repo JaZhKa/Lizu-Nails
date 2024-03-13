@@ -20,7 +20,7 @@ const Header = () => {
               <Anchor to={"/"}>Главная</Anchor>
             </li>
             <li>
-              <Anchor to={"#"}>Обучение</Anchor>
+              <Anchor to={"/study"}>Обучение</Anchor>
             </li>
             <li>
               <Anchor to={"/gallery"}>Галерея</Anchor>

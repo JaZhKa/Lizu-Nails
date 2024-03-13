@@ -13,12 +13,18 @@ import mainImg12 from "./../assets/images/HomePage/main_12_min.jpg";
 import descImg1 from "./../assets/images/HomePage/main_desc_1_min.jpg";
 import descImg2 from "./../assets/images/HomePage/main_desc_2_min.jpg";
 import descImg3 from "./../assets/images/HomePage/main_desc_3_min.jpg";
-import Button from "./../components/elements/Button";
+// import Button from "./../components/elements/Button";
 import Card from "../components/Card";
+import AppointmentModal from "../components/AppointmentModal";
+import { useDispatch } from "react-redux";
+import { toggleModal } from "../store/modal/isModal";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="flex w-full flex-col gap-y-16 md:gap-y-48">
+      <AppointmentModal />
       <section className="h-[66.666667vh]">
         <div className="absolute top-[56px] -z-50 grid h-2/3 grid-flow-col grid-rows-3 md:top-[79px]">
           <div className="row-span-2 h-full w-full bg-secondary">
@@ -116,7 +122,13 @@ const Home = () => {
             <h3 className="mb-10 text-center text-2xl text-text-color md:mb-10 md:text-right md:text-3xl xl:mb-16 xl:text-6xl">
               Качество, скорость, профессионализм
             </h3>
-            <Button style="xl:text-6xl text-2xl">Записаться</Button>
+            <button
+              className="bg-primary px-8 py-1 text-2xl text-secondary transition-all duration-100 hover:bg-accent hover:text-text-color focus:bg-accent focus:text-text-color active:scale-90 disabled:bg-secondary xl:text-6xl"
+              onClick={() => dispatch(toggleModal())}
+            >
+              Записаться
+            </button>
+            {/* <Button style="xl:text-6xl text-2xl" onClick={() => setIsOpen(!isOpen)}>Записаться</Button> */}
           </div>
         </div>
       </section>
@@ -188,9 +200,17 @@ const Home = () => {
         <h2 className="mb-16 text-center text-3xl text-text-color md:text-4xl xl:text-7xl">
           Обучение
         </h2>
-        <div className="flex flex-col items-center gap-16 md:flex-row justify-center">
-          <Card name={"База"} items={['item1', 'item2', 'item3']} imgUrl={mainImg1}></Card>
-          <Card name={'Продвинутый'} items={['pick1', 'pick2', 'pick3']} imgUrl={mainImg10}></Card>
+        <div className="flex flex-col items-center justify-center gap-16 md:flex-row">
+          <Card
+            name={"База"}
+            items={["Основы техника", "Практический опыт", "Старт карьеры"]}
+            imgUrl={mainImg1}
+          ></Card>
+          <Card
+            name={"Продвинутый"}
+            items={["Углубленные навыки", "Специализированные техники", "Профессиональное развитие"]}
+            imgUrl={mainImg10}
+          ></Card>
         </div>
       </section>
     </div>
