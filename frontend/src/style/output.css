@@ -764,6 +764,18 @@ html {
   margin-top: 2rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-7 {
+  margin-top: 1.75rem;
+}
+
 .block {
   display: block;
 }
@@ -875,6 +887,10 @@ html {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .grid-rows-2 {
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
@@ -915,12 +931,20 @@ html {
   justify-items: end;
 }
 
+.justify-items-center {
+  justify-items: center;
+}
+
 .gap-16 {
   gap: 4rem;
 }
 
 .gap-20 {
   gap: 5rem;
+}
+
+.gap-24 {
+  gap: 6rem;
 }
 
 .gap-3 {
@@ -943,44 +967,24 @@ html {
   gap: 2rem;
 }
 
-.gap-12 {
-  gap: 3rem;
-}
-
-.gap-28 {
-  gap: 7rem;
-}
-
-.gap-32 {
-  gap: 8rem;
-}
-
-.gap-48 {
-  gap: 12rem;
-}
-
-.gap-24 {
-  gap: 6rem;
-}
-
 .gap-y-16 {
   row-gap: 4rem;
+}
+
+.self-center {
+  align-self: center;
 }
 
 .overflow-hidden {
   overflow: hidden;
 }
 
-.overflow-scroll {
-  overflow: scroll;
-}
-
-.overflow-y-auto {
-  overflow-y: auto;
-}
-
 .overflow-y-scroll {
   overflow-y: scroll;
+}
+
+.border {
+  border-width: 1px;
 }
 
 .border-text-color {
@@ -1036,6 +1040,10 @@ html {
 
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-7 {
+  padding: 1.75rem;
 }
 
 .px-2 {
@@ -1295,6 +1303,10 @@ html {
     display: flex;
   }
 
+  .md\:grid {
+    display: grid;
+  }
+
   .md\:hidden {
     display: none;
   }
@@ -1323,16 +1335,20 @@ html {
     width: 20rem;
   }
 
-  .md\:w-full {
-    width: 100%;
-  }
-
   .md\:w-\[768px\] {
     width: 768px;
   }
 
+  .md\:w-full {
+    width: 100%;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:flex-row {
@@ -1399,12 +1415,24 @@ html {
 }
 
 @media (min-width: 976px) {
+  .lg\:w-\[976px\] {
+    width: 976px;
+  }
+
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:gap-20 {
     gap: 5rem;
+  }
+
+  .lg\:gap-\[10vw\] {
+    gap: 10vw;
+  }
+
+  .lg\:gap-\[2vw\] {
+    gap: 2vw;
   }
 }
 
