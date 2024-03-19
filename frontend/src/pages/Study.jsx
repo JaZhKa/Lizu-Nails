@@ -5,11 +5,11 @@ import courseImg2 from "./../assets/images/HomePage/main_2.jpg";
 const Study = () => {
   return (
     <div>
-      <h2 className="mb-16 mt-8 text-center text-6xl text-text-color md:text-left md:text-7xl xl:text-8xl">
+      <h2 id="base-course"  className="mb-16 mt-8 text-center text-6xl text-text-color md:text-left md:text-7xl xl:text-8xl">
         Обучение
       </h2>
       <div className="flex flex-col gap-24 md:w-[768px] lg:w-[976px]">
-        <article id="base-course" className="flex flex-col items-center gap-8">
+        <article className="flex flex-col items-center gap-8">
           <h3 className="mb-16 text-center text-3xl text-text-color md:text-4xl xl:text-7xl">
             Базовый
           </h3>
@@ -47,8 +47,8 @@ const Study = () => {
           </div>
           <Button>Заказать</Button>
         </article>
-        <hr className="w-48 self-center bg-text-color" />
-        <article id="advanced-course" className="flex flex-col items-center gap-8">
+        <hr className="w-48 self-center bg-text-color" id="advanced-course" />
+        <article className="flex flex-col items-center gap-8">
           <h3 className="mb-16 text-center text-3xl text-text-color md:text-4xl xl:text-7xl">
             Продвинутый
           </h3>

@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import Gallery from "./pages/Gallery";
 import Study from "./pages/Study";
 import About from "./pages/About";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const isActive = useSelector((state) => state.isActive.value);
@@ -27,6 +28,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

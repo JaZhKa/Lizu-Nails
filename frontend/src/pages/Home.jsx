@@ -13,7 +13,7 @@ import mainImg12 from "./../assets/images/HomePage/main_12_min.jpg";
 import descImg1 from "./../assets/images/HomePage/main_desc_1_min.jpg";
 import descImg2 from "./../assets/images/HomePage/main_desc_2_min.jpg";
 import descImg3 from "./../assets/images/HomePage/main_desc_3_min.jpg";
-// import Button from "./../components/elements/Button";
+import Button from "./../components/elements/Button";
 import Card from "../components/Card";
 import AppointmentModal from "../components/AppointmentModal";
 import { useDispatch } from "react-redux";
@@ -122,13 +122,7 @@ const Home = () => {
             <h3 className="mb-10 text-center text-2xl text-text-color md:mb-10 md:text-right md:text-3xl xl:mb-16 xl:text-6xl">
               Качество, скорость, профессионализм
             </h3>
-            <button
-              className="bg-primary px-8 py-1 text-2xl text-secondary transition-all duration-100 hover:bg-accent hover:text-text-color focus:bg-accent focus:text-text-color active:scale-90 disabled:bg-secondary xl:text-6xl"
-              onClick={() => dispatch(toggleModal())}
-            >
-              Записаться
-            </button>
-            {/* <Button style="xl:text-6xl text-2xl" onClick={() => setIsOpen(!isOpen)}>Записаться</Button> */}
+            <Button style="xl:text-6xl text-2xl" onClick={() => dispatch(toggleModal())}>Записаться</Button>
           </div>
         </div>
       </section>

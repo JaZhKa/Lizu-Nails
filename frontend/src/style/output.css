@@ -998,6 +998,10 @@ html {
   gap: 1.75rem;
 }
 
+.gap-12 {
+  gap: 3rem;
+}
+
 .gap-y-16 {
   row-gap: 4rem;
 }

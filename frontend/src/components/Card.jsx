@@ -1,4 +1,4 @@
-import { HashLink as Link } from "react-router-hash-link";
+import Anchor from "./elements/Anchor";
 
 const Card = ({name, items, imgUrl, to}) => {
 
@@ -12,7 +12,8 @@ const Card = ({name, items, imgUrl, to}) => {
         ))}
       </ul>
       <nav className="itemm-right m-6 flex justify-end">
-        <Link className="disabled:bg-secondary bg-primary px-8 py-1 text-secondary transition-all duration-100 hover:bg-accent hover:text-text-color focus:bg-accent focus:text-text-color active:scale-90" to={to}>Подробнее</Link>
+        <Anchor to={to}>Подробнее</Anchor>
+        {/* <Link className="disabled:bg-secondary bg-primary px-8 py-1 text-secondary transition-all duration-100 hover:bg-accent hover:text-text-color focus:bg-accent focus:text-text-color active:scale-90" to={to}>Подробнее</Link> */}
       </nav>
     </div>
   );
