@@ -696,6 +696,11 @@ html {
   margin-right: 2rem;
 }
 
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .-mb-12 {
   margin-bottom: -3rem;
 }
@@ -760,20 +765,12 @@ html {
   margin-top: 1.25rem;
 }
 
-.mt-8 {
-  margin-top: 2rem;
-}
-
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
 .mt-7 {
   margin-top: 1.75rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .block {
@@ -825,12 +822,20 @@ html {
   height: 100%;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .max-h-\[85dvh\] {
   max-height: 85dvh;
 }
 
 .min-h-\[calc\(100dvh_-_212px\)\] {
   min-height: calc(100dvh - 212px);
+}
+
+.w-24 {
+  width: 6rem;
 }
 
 .w-4\/5 {
@@ -870,8 +875,30 @@ html {
   width: 100%;
 }
 
+.w-96 {
+  width: 24rem;
+}
+
+.max-w-96 {
+  max-width: 24rem;
+}
+
+.max-w-64 {
+  max-width: 16rem;
+}
+
 .-translate-y-96 {
   --tw-translate-y: -24rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-x-\[calc\(\(-100\%_\*_\$\{urlIndex\}\)\)\] {
+  --tw-translate-x: calc((-100% * ${urlIndex}));
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-x-\[calc\(\(100\%_\*_\$\{urlIndex\}\)\)\] {
+  --tw-translate-x: calc((100% * ${urlIndex}));
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -885,10 +912,6 @@ html {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-rows-2 {
@@ -967,6 +990,14 @@ html {
   gap: 2rem;
 }
 
+.gap-40 {
+  gap: 10rem;
+}
+
+.gap-7 {
+  gap: 1.75rem;
+}
+
 .gap-y-16 {
   row-gap: 4rem;
 }
@@ -981,10 +1012,6 @@ html {
 
 .overflow-y-scroll {
   overflow-y: scroll;
-}
-
-.border {
-  border-width: 1px;
 }
 
 .border-text-color {
@@ -1013,6 +1040,20 @@ html {
 .bg-text-color {
   --tw-bg-opacity: 1;
   background-color: rgb(33 37 41 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#444\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(68 68 68 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#f\] {
+  background-color: #f;
+}
+
+.bg-\[\#54f\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(85 68 255 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-t {
@@ -1046,6 +1087,10 @@ html {
   padding: 1.75rem;
 }
 
+.p-4 {
+  padding: 1rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1073,6 +1118,10 @@ html {
 
 .text-center {
   text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
 }
 
 .text-2xl {
@@ -1427,10 +1476,6 @@ html {
     gap: 5rem;
   }
 
-  .lg\:gap-\[10vw\] {
-    gap: 10vw;
-  }
-
   .lg\:gap-\[2vw\] {
     gap: 2vw;
   }
@@ -1451,6 +1496,11 @@ html {
 
   .xl\:gap-36 {
     gap: 9rem;
+  }
+
+  .xl\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
   }
 
   .xl\:text-6xl {

@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
-const Card = ({name, items, imgUrl}) => {
+const Card = ({name, items, imgUrl, to}) => {
 
   return (
     <div className="w-[300px] shadow-md">
@@ -12,7 +12,7 @@ const Card = ({name, items, imgUrl}) => {
         ))}
       </ul>
       <nav className="itemm-right m-6 flex justify-end">
-        <Link className="disabled:bg-secondary bg-primary px-8 py-1 text-secondary transition-all duration-100 hover:bg-accent hover:text-text-color focus:bg-accent focus:text-text-color active:scale-90" to={'/study'}>Заказать</Link>
+        <Link className="disabled:bg-secondary bg-primary px-8 py-1 text-secondary transition-all duration-100 hover:bg-accent hover:text-text-color focus:bg-accent focus:text-text-color active:scale-90" to={to}>Подробнее</Link>
       </nav>
     </div>
   );

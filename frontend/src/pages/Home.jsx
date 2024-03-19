@@ -132,11 +132,11 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section className="flex flex-col items-center">
         <h2 className="mb-16 text-center text-3xl text-text-color md:text-4xl xl:text-7xl">
           Услуги
         </h2>
-        <div className="mx-8 gap-16 md:flex">
+        <div className="mx-8 gap-16 md:flex md:w-[768px] lg:w-[976px]">
           <div className="md:w-1/2">
             <div className="flex-col gap-8 md:ml-16 md:flex lg:gap-20 xl:gap-36">
               <article>
@@ -205,11 +205,13 @@ const Home = () => {
             name={"База"}
             items={["Основы техника", "Практический опыт", "Старт карьеры"]}
             imgUrl={mainImg1}
+            to={'/study#base-course'}
           ></Card>
           <Card
             name={"Продвинутый"}
             items={["Углубленные навыки", "Специализированные техники", "Профессиональное развитие"]}
             imgUrl={mainImg10}
+            to={'/study#advanced-course'}
           ></Card>
         </div>
       </section>

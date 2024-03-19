@@ -9,7 +9,7 @@ const Study = () => {
         Обучение
       </h2>
       <div className="flex flex-col gap-24 md:w-[768px] lg:w-[976px]">
-        <article className="flex flex-col items-center gap-8">
+        <article id="base-course" className="flex flex-col items-center gap-8">
           <h3 className="mb-16 text-center text-3xl text-text-color md:text-4xl xl:text-7xl">
             Базовый
           </h3>
@@ -28,7 +28,7 @@ const Study = () => {
                   востребованных дизайнов.
                 </p>
               </li>
-              <li className="pmb-2 p-7 text-text-color">
+              <li className="mb-2 p-7 text-text-color">
                 <b>Практический опыт</b> <br />
                 <p className="mt-7 text-text-color">
                   Ученики получают возможность отработать навыки на практике в
@@ -48,7 +48,7 @@ const Study = () => {
           <Button>Заказать</Button>
         </article>
         <hr className="w-48 self-center bg-text-color" />
-        <article className="flex flex-col items-center gap-8">
+        <article id="advanced-course" className="flex flex-col items-center gap-8">
           <h3 className="mb-16 text-center text-3xl text-text-color md:text-4xl xl:text-7xl">
             Продвинутый
           </h3>
