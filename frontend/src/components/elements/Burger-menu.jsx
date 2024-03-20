@@ -41,16 +41,13 @@ const Burger = () => {
           <li>
             <Anchor to={"/about"}>О нас</Anchor>
           </li>
-          {user ? (
-            <button
-              className="border-text-color text-text-color block w-fit py-[2px] hover:border-y-2 hover:border-solid hover:py-0 focus:border-y-2 focus:border-solid focus:py-0"
-              onClick={handlerLogout}
-            >
-              Выход
-            </button>
-          ) : (
-            <Anchor to={"/login"}>Вход</Anchor>
-          )}
+          <li>
+            {user ? (
+              <Anchor to={"/account"}>Профиль</Anchor>
+            ) : (
+              <Anchor to={"/login"}>Вход</Anchor>
+            )}
+          </li>
         </ul>
       </nav>
     </>

@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import Gallery from "./pages/Gallery";
 import Study from "./pages/Study";
 import About from "./pages/About";
+import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/account/*" element={<Account />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

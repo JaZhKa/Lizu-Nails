@@ -1,0 +1,42 @@
+import Anchor from "../components/elements/Anchor";
+import { Route, Routes } from "react-router-dom";
+import MyAppointments from "./Account/MyAppoitments";
+import { useLogout } from "../hooks/useLogout";
+
+const Account = () => {
+  const { logout } = useLogout();
+
+  const handlerLogout = () => {
+    logout();
+  };
+
+  return (
+    <div>
+      <h2 className="mb-16 mt-8 text-center text-6xl text-text-color md:text-left md:text-7xl xl:text-8xl">
+        Профиль
+      </h2>
+      <div>
+        <section>
+          <nav className="flex flex-col items-center">
+            <Anchor to={"/account/myappointments"}>Мои записи</Anchor>
+            <Anchor>Мои курсы</Anchor>
+            <Anchor>Мои сертификаты</Anchor>
+            <button
+              className="block w-fit border-text-color py-[2px] text-text-color hover:border-y-2 hover:border-solid hover:py-0 focus:border-y-2 focus:border-solid focus:py-0"
+              onClick={handlerLogout}
+            >
+              Выход
+            </button>
+          </nav>
+        </section>
+        <section>
+          <Routes>
+            <Route path="/myappointments" element={<MyAppointments />} />
+          </Routes>
+        </section>
+      </div>
+    </div>
+  );
+};
+
+export default Account;
