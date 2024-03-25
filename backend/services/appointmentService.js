@@ -7,10 +7,21 @@ class AppointmentService extends BaseService {
     super(Appointment);
   }
 
-  async getAll(page) {
+  async getAll(page, id) {
     try {
       const pageSize = 10;
-      return await this.model.find({}).populate(['customerId', 'masterId', 'scheduleId', 'service']).sort({createdAt: -1}).limit(pageSize).skip(page * pageSize);
+      if (id) {
+        return await this.model
+          .find({ customerId: id })
+          .populate(['masterId', 'scheduleId', 'service'])
+          .sort({ createdAt: -1 });
+      }
+      return await this.model
+        .find({})
+        .populate(['customerId', 'masterId', 'scheduleId', 'service'])
+        .sort({ createdAt: -1 })
+        .limit(pageSize)
+        .skip(page * pageSize);
     } catch (error) {
       throw error;
     }
@@ -22,7 +33,9 @@ class AppointmentService extends BaseService {
     }
 
     try {
-      return await this.model.findById(id).populate(['customerId', 'masterId', 'scheduleId', 'service']);
+      return await this.model
+        .findById(id)
+        .populate(['customerId', 'masterId', 'scheduleId', 'service']);
     } catch (error) {
       throw error;
     }

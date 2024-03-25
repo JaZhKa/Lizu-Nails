@@ -19,23 +19,18 @@ const Footer = () => {
       <div>
         <ul className="grid justify-items-end">
           <li>
-            <a href="#" className="text-primary hover:text-secondary">
+            <a href="https://www.instagram.com/lizunails" className="text-primary hover:text-secondary">
               instagram
             </a>
           </li>
           <li>
-            <a href="#" className="text-primary hover:text-secondary">
-              uClients
+            <a href="https://www.tiktok.com/@lizunails8" className="text-primary hover:text-secondary">
+              Tik-Tok
             </a>
           </li>
           <li>
-            <a href="#" className="text-primary hover:text-secondary">
+            <a href="mailto:lizazueva701@gmail.com" className="text-primary hover:text-secondary">
               E-mail
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-primary hover:text-secondary">
-              VK
             </a>
           </li>
         </ul>

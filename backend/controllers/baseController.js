@@ -6,7 +6,8 @@ class BaseController {
   async getAll(req, res) {
     try {
       const page = req.query.page;
-      const items = await this.service.getAll(page);
+      const id = req.query?.userId;
+      const items = await this.service.getAll(page, id);
       res.status(200).json(items);
     } catch (error) {
       res.status(500).json({ error: error.message });
@@ -37,7 +38,7 @@ class BaseController {
   }
 
   async update(req, res) {
-    const {id} = req.params;
+    const { id } = req.params;
     const data = req.body;
     try {
       const updatedItem = await this.service.update(data, id);

@@ -8,7 +8,11 @@ class BaseService {
   async getAll(page) {
     try {
       const pageSize = 10;
-      return await this.model.find({}).sort({createdAt: -1}).limit(pageSize).skip(page * pageSize);
+      return await this.model
+        .find({})
+        .sort({ createdAt: -1 })
+        .limit(pageSize)
+        .skip(page * pageSize);
     } catch (error) {
       throw error;
     }

@@ -122,7 +122,12 @@ const Home = () => {
             <h3 className="mb-10 text-center text-2xl text-text-color md:mb-10 md:text-right md:text-3xl xl:mb-16 xl:text-6xl">
               Качество, скорость, профессионализм
             </h3>
-            <Button style="xl:text-6xl text-2xl" onClick={() => dispatch(toggleModal())}>Записаться</Button>
+            <Button
+              style="xl:text-6xl text-2xl"
+              onClick={() => dispatch(toggleModal())}
+            >
+              Записаться
+            </Button>
           </div>
         </div>
       </section>
@@ -199,13 +204,17 @@ const Home = () => {
             name={"База"}
             items={["Основы техника", "Практический опыт", "Старт карьеры"]}
             imgUrl={mainImg1}
-            to={'/study#base-course'}
+            to={"/study#base-course"}
           ></Card>
           <Card
             name={"Продвинутый"}
-            items={["Углубленные навыки", "Специализированные техники", "Профессиональное развитие"]}
+            items={[
+              "Углубленные навыки",
+              "Специализированные техники",
+              "Профессиональное развитие",
+            ]}
             imgUrl={mainImg10}
-            to={'/study#advanced-course'}
+            to={"/study#advanced-course"}
           ></Card>
         </div>
       </section>

@@ -15,9 +15,9 @@ const Account = () => {
       <h2 className="mb-16 mt-8 text-center text-6xl text-text-color md:text-left md:text-7xl xl:text-8xl">
         Профиль
       </h2>
-      <div>
-        <section>
-          <nav className="flex flex-col items-center">
+      <div className="flex grid-cols-5 flex-col md:grid md:gap-[5vw]">
+        <section className="">
+          <nav className="flex flex-col items-center md:items-start">
             <Anchor to={"/account/myappointments"}>Мои записи</Anchor>
             <Anchor>Мои курсы</Anchor>
             <Anchor>Мои сертификаты</Anchor>
@@ -29,11 +29,14 @@ const Account = () => {
             </button>
           </nav>
         </section>
-        <section>
+        <section className="col-span-4">
           <Routes>
             <Route path="/myappointments" element={<MyAppointments />} />
           </Routes>
         </section>
+        <section></section>
+        <section></section>
+        <section></section>
       </div>
     </div>
   );
