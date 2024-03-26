@@ -14,6 +14,7 @@ const AppointmentModal = () => {
   const { makeAppointment, error } = useAppointment();
   const [customerId, setCustomerId] = useState("65ef380bdce05bbb9179819d");
   const [masterId, setMasterId] = useState("");
+  const [schedule, setSchedule] = useState("");
   const [date, setDate] = useState("");
   const [service, setService] = useState("");
   const [name, setName] = useState("");
@@ -27,10 +28,13 @@ const AppointmentModal = () => {
       const authUser = JSON.parse(localStorage.getItem("user"));
       setCustomerId(authUser._id);
       setName(authUser.name);
-      setTel(authUser?.contacts.phoneNumber);
-      setInst(authUser?.contacts.intagramNickname);
+      setTel(authUser?.contacts?.phoneNumber);
+      setInst(authUser?.contacts?.intagramNickname);
+      toggleModal();
+      return await makeAppointment(name, customerId, masterId, date, service, tel, inst);
     }
-    await makeAppointment(name, customerId, masterId, date, service, tel, inst);
+    toggleModal();
+    return await makeAppointment(name, customerId, masterId, date, service, tel, inst);
   };
 
   const getAppointmentData = async () => {
@@ -50,8 +54,26 @@ const AppointmentModal = () => {
     }
   };
 
+  const getDateData = async () => {
+    try {
+      await axios
+        .get("http://localhost:3000/api/schedule")
+        .catch((error) => {
+          if (error.response.status !== 200) {
+            console.log("Не удалось получить данные.");
+          }
+        })
+        .then((res) => {
+          setSchedule(res.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getAppointmentData();
+    getDateData();
   }, []);
 
   return (
@@ -60,7 +82,7 @@ const AppointmentModal = () => {
         id="appointmentModal"
         className={
           (!isModalOpen && " hidden ") +
-          " max-h-[85dvh] overflow-y-scroll bg-secodary flex flex-col items-end shadow-2xl"
+          " bg-secodary flex max-h-[85dvh] flex-col items-end overflow-y-scroll shadow-2xl"
         }
       >
         <form
@@ -159,14 +181,31 @@ const AppointmentModal = () => {
           <label htmlFor="appointment-date" className="text-text-color">
             Дата и время
           </label>
-          <input
+          <select
+            id="appointment-date"
+            className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
+            disabled={!isLoaded}
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          >
+            <option hidden value="">
+              Выберите дату и время
+            </option>
+            {Array.isArray(schedule) &&
+              schedule.map((item) => (
+                <option key={item._id}>{new Date(item.start).toLocaleString('ru-RU', {day:'numeric', month: 'long'})} | {new Date(item.start).getHours()}:{new Date(item.start).getMinutes() < 10
+                  ? `0${new Date(item.start).getMinutes()}`
+                  : new Date(item.start).getMinutes()}</option>
+              ))}
+          </select>
+          {/* <input
             className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
             disabled={!isLoaded}
             id="appointment-date"
             value={date}
             type="datetime-local"
             onChange={(e) => setDate(e.target.value)}
-          ></input>
+          ></input> */}
           {Array.isArray(serviceList) &&
             serviceList
               .filter((item) => item._id === service)
