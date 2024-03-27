@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const serviceSchema = new Schema({
   serviceType: {
     type: String,
-    enum: ['Маникюр', 'Педикюр'],
+    enum: ['Маникюр', 'Педикюр', 'Наращивание'],
     require: true,
   },
   title: {
@@ -22,6 +22,12 @@ const serviceSchema = new Schema({
   duration: {
     type: Number,
   },
+  master: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
   additionalService: {
     addServiceType: {
       type: String,
@@ -36,6 +42,6 @@ const serviceSchema = new Schema({
       type: Number,
     },
   },
-})
+});
 
 module.exports = mongoose.model('Service', serviceSchema);

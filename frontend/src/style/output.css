@@ -908,10 +908,6 @@ html {
   grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 
-.flex-row {
-  flex-direction: row;
-}
-
 .flex-col {
   flex-direction: column;
 }
@@ -992,6 +988,10 @@ html {
   gap: 2rem;
 }
 
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .gap-y-16 {
   row-gap: 4rem;
 }
@@ -1000,20 +1000,12 @@ html {
   align-self: center;
 }
 
-.self-baseline {
-  align-self: baseline;
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
 
 .overflow-y-scroll {
   overflow-y: scroll;
-}
-
-.whitespace-nowrap {
-  white-space: nowrap;
 }
 
 .border-text-color {
@@ -1112,12 +1104,8 @@ html {
   text-align: justify;
 }
 
-.text-end {
-  text-align: end;
-}
-
-.align-baseline {
-  vertical-align: baseline;
+.text-start {
+  text-align: start;
 }
 
 .text-2xl {

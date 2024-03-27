@@ -15,6 +15,7 @@ import descImg2 from "./../assets/images/HomePage/main_desc_2_min.jpg";
 import descImg3 from "./../assets/images/HomePage/main_desc_3_min.jpg";
 import Button from "./../components/elements/Button";
 import Card from "../components/Card";
+import Anchor from "../components/elements/Anchor";
 import AppointmentModal from "../components/AppointmentModal";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../store/modal/isModal";
@@ -150,18 +151,7 @@ const Home = () => {
                   от 60р
                 </p>
               </article>
-              <article>
-                <h3 className="mb-4 text-center text-xl text-text-color md:text-right md:text-2xl">
-                  Педикюр
-                </h3>
-                <p className="text-center text-base text-text-color md:text-right md:text-xl">
-                  Идеальный педикюр в любое время года без вреда для ваших
-                  ногтей. Качественное и тонкое покрытие.
-                </p>
-                <p className="mb-8 text-center text-xs text-text-color md:text-right">
-                  от 35р
-                </p>
-              </article>
+
               <article>
                 <h3 className="mb-4 text-center text-xl text-text-color md:text-right md:text-2xl">
                   Наращивание ногтей
@@ -172,6 +162,18 @@ const Home = () => {
                 </p>
                 <p className="mb-8 text-center text-xs text-text-color md:text-right">
                   от 70р
+                </p>
+              </article>
+              <article>
+                <h3 className="mb-4 text-center text-xl text-text-color md:text-right md:text-2xl">
+                  Педикюр
+                </h3>
+                <p className="text-center text-base text-text-color md:text-right md:text-xl">
+                  Идеальный педикюр в любое время года без вреда для ваших
+                  ногтей. Качественное и тонкое покрытие.
+                </p>
+                <p className="mb-8 text-center text-xs text-text-color md:text-right">
+                  от 35р
                 </p>
               </article>
             </div>
@@ -194,6 +196,7 @@ const Home = () => {
             />
           </div>
         </div>
+        <Anchor to={"/services"}>Подробнее</Anchor>
       </section>
       <section>
         <h2 className="mb-16 text-center text-3xl text-text-color md:text-4xl xl:text-7xl">
