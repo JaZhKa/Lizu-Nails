@@ -34,7 +34,7 @@ const userSchema = new Schema(
         type: String,
         maxlength: 13,
       },
-      intagramNickname: {
+      instagramNickname: {
         type: String,
       },
     },

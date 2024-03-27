@@ -805,6 +805,10 @@ html {
   height: 66.666667%;
 }
 
+.h-4\/5 {
+  height: 80%;
+}
+
 .h-64 {
   height: 16rem;
 }
@@ -824,22 +828,6 @@ html {
 
 .h-full {
   height: 100%;
-}
-
-.h-\[140px\] {
-  height: 140px;
-}
-
-.h-44 {
-  height: 11rem;
-}
-
-.h-36 {
-  height: 9rem;
-}
-
-.h-4\/5 {
-  height: 80%;
 }
 
 .max-h-\[85dvh\] {
@@ -887,24 +875,8 @@ html {
   width: 100%;
 }
 
-.w-\[140px\] {
-  width: 140px;
-}
-
-.w-36 {
-  width: 9rem;
-}
-
-.min-w-80 {
-  min-width: 20rem;
-}
-
 .min-w-64 {
   min-width: 16rem;
-}
-
-.max-w-80 {
-  max-width: 20rem;
 }
 
 .-translate-y-96 {
@@ -956,6 +928,10 @@ html {
   align-items: center;
 }
 
+.items-baseline {
+  align-items: baseline;
+}
+
 .justify-end {
   justify-content: flex-end;
 }
@@ -1000,6 +976,10 @@ html {
   gap: 1rem;
 }
 
+.gap-40 {
+  gap: 10rem;
+}
+
 .gap-5 {
   gap: 1.25rem;
 }
@@ -1012,14 +992,6 @@ html {
   gap: 2rem;
 }
 
-.gap-72 {
-  gap: 18rem;
-}
-
-.gap-40 {
-  gap: 10rem;
-}
-
 .gap-y-16 {
   row-gap: 4rem;
 }
@@ -1028,12 +1000,20 @@ html {
   align-self: center;
 }
 
+.self-baseline {
+  align-self: baseline;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
 
 .overflow-y-scroll {
   overflow-y: scroll;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
 }
 
 .border-text-color {
@@ -1062,11 +1042,6 @@ html {
 .bg-text-color {
   --tw-bg-opacity: 1;
   background-color: rgb(33 37 41 / var(--tw-bg-opacity));
-}
-
-.bg-\[blue\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 255 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-t {
@@ -1137,6 +1112,14 @@ html {
   text-align: justify;
 }
 
+.text-end {
+  text-align: end;
+}
+
+.align-baseline {
+  vertical-align: baseline;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -1170,11 +1153,6 @@ html {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
 }
 
 .font-semibold {
@@ -1353,10 +1331,6 @@ html {
     top: 80px;
   }
 
-  .md\:col-span-2 {
-    grid-column: span 2 / span 2;
-  }
-
   .md\:mx-48 {
     margin-left: 12rem;
     margin-right: 12rem;
@@ -1402,6 +1376,10 @@ html {
     width: 40%;
   }
 
+  .md\:w-36 {
+    width: 9rem;
+  }
+
   .md\:w-4\/5 {
     width: 80%;
   }
@@ -1420,10 +1398,6 @@ html {
 
   .md\:w-full {
     width: 100%;
-  }
-
-  .md\:w-36 {
-    width: 9rem;
   }
 
   .md\:grid-cols-2 {
@@ -1450,24 +1424,12 @@ html {
     justify-content: space-around;
   }
 
-  .md\:gap-\[5vw\] {
-    gap: 5vw;
-  }
-
-  .md\:gap-12 {
-    gap: 3rem;
-  }
-
-  .md\:gap-11 {
-    gap: 2.75rem;
-  }
-
-  .md\:gap-10 {
-    gap: 2.5rem;
-  }
-
   .md\:gap-8 {
     gap: 2rem;
+  }
+
+  .md\:gap-\[5vw\] {
+    gap: 5vw;
   }
 
   .md\:gap-y-48 {
@@ -1530,12 +1492,12 @@ html {
     gap: 5rem;
   }
 
-  .lg\:gap-\[2vw\] {
-    gap: 2vw;
-  }
-
   .lg\:gap-72 {
     gap: 18rem;
+  }
+
+  .lg\:gap-\[2vw\] {
+    gap: 2vw;
   }
 }
 

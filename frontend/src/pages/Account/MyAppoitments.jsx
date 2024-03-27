@@ -31,15 +31,19 @@ const MyAppoitments = () => {
         Записи
       </h3>
       <section className="flex flex-col gap-8">
-        {Array.isArray(appointments) &&
+        {appointments.length ? (
           appointments.map((appointment) => (
             <AppointmentCard
               key={appointment._id}
               title={appointment.service.title}
+              master={appointment.masterId.name}
               date={appointment.createdAt}
               price={appointment.service.price}
             />
-          ))}
+          ))
+        ) : (
+          <p className="text-text-color">Записей нет.</p>
+        )}
       </section>
     </div>
   );

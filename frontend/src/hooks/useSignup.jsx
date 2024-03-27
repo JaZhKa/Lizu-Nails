@@ -13,12 +13,20 @@ export const useSignup = () => {
   const changeLoaded = useDispatch();
   const navigate = useNavigate();
 
-  const signup = async (name, email, password) => {
+  const signup = async (
+    name,
+    phoneNumber,
+    instagramNickname,
+    email,
+    password,
+  ) => {
     changeLoaded(toggleLoaded());
     setError(null);
 
     await axios
-      .post("http://localhost:3000/api/user/signup", { name,
+      .post("http://localhost:3000/api/user/signup", {
+        name,
+        contacts: { phoneNumber, instagramNickname },
         email,
         password,
       })
@@ -31,7 +39,7 @@ export const useSignup = () => {
         setCookie("token", res.data.token);
         dispatch({ type: "LOGIN", payload: res.data });
         localStorage.setItem("user", JSON.stringify(res.data.email));
-        navigate('/login')
+        navigate("/login");
       })
       .finally(() => {
         changeLoaded(toggleLoaded());

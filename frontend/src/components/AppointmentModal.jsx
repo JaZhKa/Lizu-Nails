@@ -19,22 +19,21 @@ const AppointmentModal = () => {
   const [service, setService] = useState("");
   const [name, setName] = useState("");
   const [serviceList, setServiceList] = useState("");
-  const [tel, setTel] = useState("");
-  const [inst, setInst] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [instagramNickname, setInstagramNickname] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (user) {
-      const authUser = JSON.parse(localStorage.getItem("user"));
-      setCustomerId(authUser._id);
-      setName(authUser.name);
-      setTel(authUser?.contacts?.phoneNumber);
-      setInst(authUser?.contacts?.intagramNickname);
-      toggleModal();
-      return await makeAppointment(name, customerId, masterId, date, service, tel, inst);
-    }
     toggleModal();
-    return await makeAppointment(name, customerId, masterId, date, service, tel, inst);
+    await makeAppointment(
+      name,
+      customerId,
+      masterId,
+      date,
+      service,
+      phoneNumber,
+      instagramNickname,
+    );
   };
 
   const getAppointmentData = async () => {
@@ -71,10 +70,22 @@ const AppointmentModal = () => {
     }
   };
 
+  const getUser = async () => {
+    if (user) {
+      const authUser = JSON.parse(localStorage.getItem("user"));
+      setCustomerId(authUser._id);
+      setName(authUser.name);
+      setPhoneNumber(authUser?.contacts?.phoneNumber);
+      setInstagramNickname(authUser?.contacts?.intagramNickname);
+    }
+    return;
+  };
+
   useEffect(() => {
     getAppointmentData();
     getDateData();
-  }, []);
+    getUser();
+  }, [user]);
 
   return (
     <div className="fixed inset-x-0">
@@ -102,31 +113,41 @@ const AppointmentModal = () => {
                 value={name}
                 id="appointment-name"
               />
-              <label htmlFor="appointment-inst" className="text-text-color">
+              <label
+                htmlFor="appointment-instagramNickname"
+                className="text-text-color"
+              >
                 Instagram
               </label>
               <input
                 type="text"
                 disabled={!isLoaded}
                 className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
-                onChange={(e) => setTel(e.target.value)}
-                value={tel}
-                id="appointment-inst"
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={phoneNumber}
+                id="appointment-instagramNickname"
               />
-              <label htmlFor="appointment-tel" className="text-text-color">
+              <label
+                htmlFor="appointment-phoneNumber"
+                className="text-text-color"
+              >
                 Номер телефона
               </label>
               <input
                 type="tel"
                 disabled={!isLoaded}
                 className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
-                onChange={(e) => setInst(e.target.value)}
-                value={inst}
-                id="appointment-tel"
+                onChange={(e) => setInstagramNickname(e.target.value)}
+                value={instagramNickname}
+                id="appointment-phoneNumber"
               />
             </>
           )}
-          <label htmlFor="appointment-service" className="text-text-color">
+          <label
+            htmlFor="appointment-service"
+            id="appointment-service"
+            className="text-text-color"
+          >
             Услуга
           </label>
           <select
@@ -193,19 +214,18 @@ const AppointmentModal = () => {
             </option>
             {Array.isArray(schedule) &&
               schedule.map((item) => (
-                <option key={item._id}>{new Date(item.start).toLocaleString('ru-RU', {day:'numeric', month: 'long'})} | {new Date(item.start).getHours()}:{new Date(item.start).getMinutes() < 10
-                  ? `0${new Date(item.start).getMinutes()}`
-                  : new Date(item.start).getMinutes()}</option>
+                <option key={item._id}>
+                  {new Date(item.start).toLocaleString("ru-RU", {
+                    day: "numeric",
+                    month: "long",
+                  })}
+                  &nbsp;|&nbsp;{new Date(item.start).getHours()}:
+                  {new Date(item.start).getMinutes() < 10
+                    ? `0${new Date(item.start).getMinutes()}`
+                    : new Date(item.start).getMinutes()}
+                </option>
               ))}
           </select>
-          {/* <input
-            className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
-            disabled={!isLoaded}
-            id="appointment-date"
-            value={date}
-            type="datetime-local"
-            onChange={(e) => setDate(e.target.value)}
-          ></input> */}
           {Array.isArray(serviceList) &&
             serviceList
               .filter((item) => item._id === service)

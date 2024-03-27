@@ -34,6 +34,15 @@ const appointmentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Service',
     },
+    contacts: {
+      phoneNumber: {
+        type: String,
+        maxlength: 13,
+      },
+      instagramNickname: {
+        type: String,
+      },
+    },
   },
   { timestamps: true }
 );

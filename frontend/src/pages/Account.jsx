@@ -2,9 +2,11 @@ import Anchor from "../components/elements/Anchor";
 import { Route, Routes } from "react-router-dom";
 import MyAppointments from "./Account/MyAppoitments";
 import { useLogout } from "../hooks/useLogout";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Account = () => {
   const { logout } = useLogout();
+  const { user } = useAuthContext();
 
   const handlerLogout = () => {
     logout();
@@ -15,8 +17,8 @@ const Account = () => {
       <h2 className="mb-16 mt-8 text-center text-6xl text-text-color md:text-left md:text-7xl xl:text-8xl">
         Профиль
       </h2>
-      <div className="flex grid-cols-5 flex-col md:grid md:gap-[5vw]">
-        <section className="">
+      {user ?  <div className="flex grid-cols-5 flex-col md:grid md:gap-[5vw]">
+        <section>
           <nav className="flex flex-col items-center md:items-start">
             <Anchor to={"/account/myappointments"}>Мои записи</Anchor>
             <Anchor>Мои курсы</Anchor>
@@ -37,7 +39,8 @@ const Account = () => {
         <section></section>
         <section></section>
         <section></section>
-      </div>
+      </div> : <div className="flex justify-center"><span className="text-text-color flex items-baseline">Пожалуйста,&nbsp;<Anchor to={'/login'}>войдите&nbsp;</Anchor>или&nbsp;<Anchor to={'/signup'}>зарегистрируйтесь</Anchor></span></div>}
+     
     </div>
   );
 };

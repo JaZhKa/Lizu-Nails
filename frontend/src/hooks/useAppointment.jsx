@@ -15,8 +15,8 @@ export const useAppointment = () => {
     masterId,
     date,
     service,
-    inst,
-    tel,
+    instagramNickname,
+    phoneNumber,
   ) => {
     changeLoaded(toggleLoaded());
     setError(null);
@@ -28,8 +28,7 @@ export const useAppointment = () => {
         masterId,
         date,
         service,
-        inst,
-        tel,
+        contacts: { instagramNickname, phoneNumber },
       })
       .catch((error) => {
         if (error.response.status !== 201) {
