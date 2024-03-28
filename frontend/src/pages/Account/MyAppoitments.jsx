@@ -37,7 +37,7 @@ const MyAppoitments = () => {
               key={appointment._id}
               title={appointment.service.title}
               master={appointment.masterId.name}
-              date={appointment.createdAt}
+              date={appointment.scheduleId.start}
               price={appointment.service.price}
             />
           ))
