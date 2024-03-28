@@ -15,7 +15,7 @@ const AppointmentModal = () => {
   const [customerId, setCustomerId] = useState("65ef380bdce05bbb9179819d");
   const [masterId, setMasterId] = useState("");
   const [schedule, setSchedule] = useState("");
-  const [date, setDate] = useState("");
+  const [scheduleId, setScheduleId] = useState("");
   const [service, setService] = useState("");
   const [name, setName] = useState("");
   const [serviceList, setServiceList] = useState("");
@@ -29,7 +29,7 @@ const AppointmentModal = () => {
       name,
       customerId,
       masterId,
-      date,
+      scheduleId,
       service,
       phoneNumber,
       instagramNickname,
@@ -199,22 +199,22 @@ const AppointmentModal = () => {
                   )),
                 )}
           </select>
-          <label htmlFor="appointment-date" className="text-text-color">
+          <label htmlFor="appointment-scheduleId" className="text-text-color">
             Дата и время
           </label>
           <select
-            id="appointment-date"
+            id="appointment-scheduleId"
             className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
             disabled={!isLoaded}
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
+            value={scheduleId}
+            onChange={(e) => setScheduleId(e.target.value)}
           >
             <option hidden value="">
               Выберите дату и время
             </option>
             {Array.isArray(schedule) &&
               schedule.map((item) => (
-                <option key={item._id}>
+                <option key={item._id} value={item._id}>
                   {new Date(item.start).toLocaleString("ru-RU", {
                     day: "numeric",
                     month: "long",

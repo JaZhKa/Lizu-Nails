@@ -13,7 +13,7 @@ export const useAppointment = () => {
     name,
     customerId,
     masterId,
-    date,
+    scheduleId,
     service,
     instagramNickname,
     phoneNumber,
@@ -26,7 +26,7 @@ export const useAppointment = () => {
         name,
         customerId,
         masterId,
-        date,
+        scheduleId,
         service,
         contacts: { instagramNickname, phoneNumber },
       })
