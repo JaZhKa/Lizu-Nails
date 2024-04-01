@@ -17,6 +17,7 @@ const appointmentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User',
       require: true,
+      default: '65cbac3e43752e6674ffb3ab',
     },
     scheduleId: {
       type: Schema.Types.ObjectId,

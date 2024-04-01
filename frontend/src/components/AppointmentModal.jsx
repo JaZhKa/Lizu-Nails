@@ -13,7 +13,6 @@ const AppointmentModal = () => {
   const { user } = useAuthContext();
   const { makeAppointment, error } = useAppointment();
   const [customerId, setCustomerId] = useState("65ef380bdce05bbb9179819d");
-  const [masterId, setMasterId] = useState("");
   const [schedule, setSchedule] = useState("");
   const [date, setDate] = useState("");
   const [service, setService] = useState("");
@@ -28,7 +27,6 @@ const AppointmentModal = () => {
     await makeAppointment(
       name,
       customerId,
-      masterId,
       date,
       service,
       phoneNumber,
@@ -170,34 +168,6 @@ const AppointmentModal = () => {
                   {item.title}
                 </option>
               ))}
-          </select>
-          <label htmlFor="appointment-masterId" className="text-text-color">
-            Мастер
-          </label>
-          <select
-            className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
-            disabled={!isLoaded}
-            id="appointment-masterId"
-            value={masterId}
-            onChange={(e) => setMasterId(e.target.value)}
-          >
-            <option hidden value="">
-              Выберите мастера
-            </option>
-            {Array.isArray(serviceList) &&
-              serviceList
-                .filter((item) => item._id === service)
-                .flatMap((item) =>
-                  item.master.map((master) => (
-                    <option
-                      key={master._id}
-                      value={master._id}
-                      className="text-text-color"
-                    >
-                      {master.name}
-                    </option>
-                  )),
-                )}
           </select>
           <label htmlFor="appointment-date" className="text-text-color">
             Дата и время

@@ -116,7 +116,7 @@ const Home = () => {
         <div className="absolute top-[57px] -z-40 h-2/3 w-full bg-gradient-to-t from-[white] to-50% md:top-[80px]"></div>
         <div className="radial absolute inset-[10%] top-[56px] -z-30 h-full w-4/5 overflow-hidden to-50% md:left-1/2 md:top-[79px] md:w-2/5"></div>
         <div className="md:left-3/5 inset-[10%] flex h-full w-full flex-col items-center md:w-4/5 md:items-end">
-          <div className="flex w-4/5 flex-col md:w-2/3 md:items-end">
+          <div className="flex w-4/5 flex-col md:w-1/2 md:items-end">
             <h1 className="mb-6 mt-12 text-center text-4xl text-text-color md:text-right md:text-6xl xl:mb-16 xl:text-8xl">
               Идеальный маникюр ждёт!
             </h1>

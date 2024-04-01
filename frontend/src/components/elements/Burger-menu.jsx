@@ -2,16 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleActive } from "./../../store/active/isActive";
 import Anchor from "./Anchor";
 import { useAuthContext } from "./../../hooks/useAuthContext";
-import { useLogout } from "./../../hooks/useLogout";
 
 const Burger = () => {
   const isActive = useSelector((state) => state.isActive.value);
   const dispatch = useDispatch();
   const { user } = useAuthContext();
-  const { logout } = useLogout();
-  const handlerLogout = () => {
-    logout();
-  };
 
   return (
     <>
@@ -33,13 +28,13 @@ const Burger = () => {
             <Anchor to={"/"}>Главная</Anchor>
           </li>
           <li>
-            <Anchor to={"/study"}>Обучение</Anchor>
-          </li>
-          <li>
             <Anchor to={"/gallery"}>Галерея</Anchor>
           </li>
           <li>
-            <Anchor to={"/about"}>О нас</Anchor>
+            <Anchor to={"/study"}>Обучение</Anchor>
+          </li>
+          <li>
+            <Anchor to={"/about"}>Обо мне</Anchor>
           </li>
           <li>
             {user ? (
