@@ -12,7 +12,7 @@ export const useAppointment = () => {
   const makeAppointment = async (
     name,
     customerId,
-    date,
+    scheduleId,
     service,
     instagramNickname,
     phoneNumber,
@@ -24,7 +24,7 @@ export const useAppointment = () => {
       .post("http://localhost:3000/api/appointment", {
         name,
         customerId,
-        date,
+        scheduleId,
         service,
         contacts: { instagramNickname, phoneNumber },
       })

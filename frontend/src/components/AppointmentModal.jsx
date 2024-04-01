@@ -14,7 +14,7 @@ const AppointmentModal = () => {
   const { makeAppointment, error } = useAppointment();
   const [customerId, setCustomerId] = useState("65ef380bdce05bbb9179819d");
   const [schedule, setSchedule] = useState("");
-  const [date, setDate] = useState("");
+  const [scheduleId, setScheduleId] = useState("");
   const [service, setService] = useState("");
   const [name, setName] = useState("");
   const [serviceList, setServiceList] = useState("");
@@ -27,7 +27,7 @@ const AppointmentModal = () => {
     await makeAppointment(
       name,
       customerId,
-      date,
+      scheduleId,
       service,
       phoneNumber,
       instagramNickname,
@@ -173,18 +173,18 @@ const AppointmentModal = () => {
             Дата и время
           </label>
           <select
-            id="appointment-date"
+            id="appointment-scheduleId"
             className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
             disabled={!isLoaded}
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
+            value={scheduleId}
+            onChange={(e) => setScheduleId(e.target.value)}
           >
             <option hidden value="">
               Выберите дату и время
             </option>
             {Array.isArray(schedule) &&
               schedule.map((item) => (
-                <option key={item._id}>
+                <option key={item._id} value={item._id}>
                   {new Date(item.start).toLocaleString("ru-RU", {
                     day: "numeric",
                     month: "long",
