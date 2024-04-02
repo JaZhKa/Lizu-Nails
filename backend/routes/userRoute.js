@@ -1,6 +1,7 @@
 const express = require('express');
 const BaseRouter = require('./baseRouter');
 const UserController = require('../controllers/userController');
+const requireAuth = require('../middleware/requireAuth');
 
 class UserRouter extends BaseRouter {
   constructor() {
@@ -17,11 +18,12 @@ class UserRouter extends BaseRouter {
   }
 
   setupRoutes() {
+    this.signUp('/signup', this.controller.singUp);
+    this.signIn('/signin', this.controller.logIn);
+    this.router.use(requireAuth);
     this.getAll('/', this.controller.getAll);
     this.getOne('/:id', this.controller.getOne);
     this.post('/', this.controller.create);
-    this.signUp('/signup', this.controller.singUp);
-    this.signIn('/signin', this.controller.logIn);
     this.patch('/:id', this.controller.update);
     this.delete('/:id', this.controller.delete);
   }

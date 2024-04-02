@@ -1,5 +1,6 @@
 const BaseRouter = require('./baseRouter');
 const AppointmentController = require('../controllers/appointmentController');
+const requireAuth = require('../middleware/requireAuth');
 
 class AppointmentRouter extends BaseRouter {
   constructor() {
@@ -10,6 +11,7 @@ class AppointmentRouter extends BaseRouter {
     this.getAll('/', this.controller.getAll);
     this.getOne('/:id', this.controller.getOne);
     this.post('/', this.controller.create);
+    this.router.use(requireAuth);
     this.patch('/:id', this.controller.update);
     this.delete('/:id', this.controller.delete);
   }
