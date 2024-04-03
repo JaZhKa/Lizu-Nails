@@ -8,10 +8,10 @@ class AppointmentRouter extends BaseRouter {
   }
 
   setupRoutes() {
-    this.getAll('/', this.controller.getAll);
-    this.getOne('/:id', this.controller.getOne);
     this.post('/', this.controller.create);
     this.router.use(requireAuth);
+    this.getAll('/', this.controller.getAll);
+    this.getOne('/:id', this.controller.getOne);
     this.patch('/:id', this.controller.update);
     this.delete('/:id', this.controller.delete);
   }

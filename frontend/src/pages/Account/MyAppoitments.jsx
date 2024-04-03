@@ -2,15 +2,20 @@ import { useState } from "react";
 import AppointmentCard from "../../components/AppointmentCard";
 import axios from "axios";
 import { useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 const MyAppoitments = () => {
   const [appointments, setAppointments] = useState("");
+  const [cookie] = useCookies("");
 
   const getAppoinments = async () => {
     await axios
       .get("http://localhost:3000/api/appointment", {
         params: {
           userId: JSON.parse(localStorage.getItem("user"))._id,
+        },
+        headers: {
+          Authorization: "Bearer " + cookie.token,
         },
       })
       .catch((error) => {
