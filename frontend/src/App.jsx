@@ -19,8 +19,8 @@ function App() {
       <Header />
       <main
         className={
-          "flex min-h-[calc(100dvh_-_212px)] items-center justify-center" +
-          (isActive ? " -mt-[18.7rem]" : " mt-0")
+          "transition-all duration-300 ease-out flex min-h-[calc(100dvh_-_212px)] items-center justify-center" +
+          (isActive ? " -mt-[18.71rem]" : " mt-0")
         }
       >
         <Routes>

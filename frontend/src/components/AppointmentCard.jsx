@@ -1,6 +1,6 @@
 import nailsDefault from "./../assets/images/Account/nails_default.png";
 
-const AppointmentCard = ({ title, master, date, price }) => {
+const AppointmentCard = ({ title, date, price }) => {
   const AppointmentDate = new Date(date);
 
   return (
@@ -11,9 +11,8 @@ const AppointmentCard = ({ title, master, date, price }) => {
         alt="nails photo"
       />
       <div className="flex flex-col items-center gap-4 p-4 md:items-start md:gap-8">
-        <div className="w-full justify-between text-center items-baseline md:flex">
+        <div className="w-full items-baseline justify-between text-center md:flex">
           <h4 className="text-xl font-semibold text-text-color">{title}</h4>
-          <p className="text-text-color">{master}</p>
         </div>
         <div className="gap-40 text-center md:flex lg:gap-72 xl:gap-96">
           <p className="text-text-color">

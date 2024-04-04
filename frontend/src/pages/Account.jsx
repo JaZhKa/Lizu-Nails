@@ -21,7 +21,7 @@ const Account = () => {
       {user ? (
         <div className="flex grid-cols-5 flex-col md:grid md:gap-[5vw]">
           <section>
-            <nav className="flex flex-col items-center md:items-start">
+            <nav className="mb-10 flex flex-col items-center md:items-start">
               <Anchor to={"/account"}>Мой профиль</Anchor>
               <Anchor to={"/account/myappointments"}>Мои записи</Anchor>
               {/* <Anchor>Мои курсы</Anchor>

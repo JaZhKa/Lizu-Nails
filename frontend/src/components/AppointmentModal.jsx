@@ -86,12 +86,12 @@ const AppointmentModal = () => {
   }, [user]);
 
   return (
-    <div className="fixed inset-x-0">
+    <div className="fixed inset-x-0 z-50">
       <dialog
         id="appointmentModal"
         className={
-          (!isModalOpen && " hidden ") +
-          " bg-secodary flex max-h-[85dvh] flex-col items-end overflow-y-scroll shadow-2xl"
+          (!isModalOpen && " max-h-0 opacity-0 ") +
+          " bg-secodary flex max-h-[85dvh] flex-col items-end overflow-y-scroll shadow-2xl transition-all duration-300"
         }
       >
         <form
@@ -200,13 +200,13 @@ const AppointmentModal = () => {
             serviceList
               .filter((item) => item._id === service)
               .map((item) => (
-                <span key={item._id}>Стоимость: {item.price}р.</span>
+                <span key={item._id}>Стоимость: {item.price} р.</span>
               ))}
           {Array.isArray(serviceList) &&
             serviceList
               .filter((item) => item._id === service)
               .map((item) => (
-                <span key={item._id}>Длительность: {item.duration}м.</span>
+                <span key={item._id}>Длительность: {item.duration} мин.</span>
               ))}
           <div className="flex w-9/12 justify-between md:w-80">
             <Button disabled={!isLoaded} onClick={handleSubmit}>

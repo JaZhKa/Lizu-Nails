@@ -19,7 +19,7 @@ const Burger = () => {
       <nav
         className={
           "top-[56px] z-10 w-full transition-all duration-300 ease-out md:hidden" +
-          (isActive ? " h-fit" : " h-0 -translate-y-96 opacity-0")
+          (isActive ? " h-[300px]" : " h-0 -translate-y-96 opacity-0")
         }
         onClick={() => dispatch(toggleActive())}
       >

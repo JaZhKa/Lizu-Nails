@@ -41,7 +41,6 @@ const MyAppoitments = () => {
             <AppointmentCard
               key={appointment._id}
               title={appointment.service.title}
-              master={appointment.masterId.name}
               date={appointment.scheduleId.start}
               price={appointment.service.price}
             />
