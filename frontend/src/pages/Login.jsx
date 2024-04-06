@@ -12,7 +12,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(email, password);
+
+    const formData = new FormData(e.target);
+    const payload = Object.fromEntries(formData);
+
+    await login(payload);
   };
 
   return (
@@ -20,7 +24,7 @@ const Login = () => {
       className="flex w-80 flex-col items-center gap-5 md:items-start"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="login-email" className="text-text-color">
+      <label htmlFor="email" className="text-text-color">
         Email
       </label>
       <input
@@ -30,12 +34,11 @@ const Login = () => {
         autoComplete="username"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
-        id="login-email"
+        id="email"
+        name="email"
+        required
       />
-      <label
-        htmlFor="login-password"
-        className="text-text-color"
-      >
+      <label htmlFor="password" className="text-text-color">
         Пароль
       </label>
       <input
@@ -45,7 +48,9 @@ const Login = () => {
         autoComplete="current-password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
-        id="login-password"
+        id="password"
+        name="password"
+        required
       />
       <div className="flex w-9/12 justify-between md:w-80">
         <Button disabled={!isLoaded}>Войти</Button>

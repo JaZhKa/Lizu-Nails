@@ -13,14 +13,13 @@ export const useLogin = () => {
   const changeLoaded = useDispatch();
   const navigate = useNavigate();
 
-  const login = async (email, password) => {
+  const login = async (payload) => {
     changeLoaded(toggleLoaded());
     setError(null);
 
     await axios
       .post("http://localhost:3000/api/user/signin", {
-        email,
-        password,
+        ...payload,
       })
       .catch((error) => {
         if (error.response.status !== 200) {

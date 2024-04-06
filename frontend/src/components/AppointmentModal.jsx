@@ -12,7 +12,6 @@ const AppointmentModal = () => {
   const dispatch = useDispatch();
   const { user } = useAuthContext();
   const { makeAppointment, error } = useAppointment();
-  const [customerId, setCustomerId] = useState("65ef380bdce05bbb9179819d");
   const [schedule, setSchedule] = useState("");
   const [scheduleId, setScheduleId] = useState("");
   const [service, setService] = useState("");
@@ -23,15 +22,25 @@ const AppointmentModal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    toggleModal();
-    await makeAppointment(
-      name,
-      customerId,
-      scheduleId,
-      service,
-      phoneNumber,
+    const formData = new FormData(e.target);
+    if (user) {
+      const authUser = JSON.parse(localStorage.getItem("user"));
+      formData.append("customerId", authUser._id);
+      formData.append("name", authUser.name);
+      formData.append("phoneNumber", authUser?.contacts?.phoneNumber);
+      formData.append(
+        "instagramNickname",
+        authUser?.contacts?.intagramNickname,
+      );
+    }
+    const payload = Object.fromEntries(formData);
+    const contacts = {
       instagramNickname,
-    );
+      phoneNumber,
+    };
+    payload.contacts = contacts;
+    await makeAppointment(payload);
+    toggleModal();
   };
 
   const getAppointmentData = async () => {
@@ -68,30 +77,18 @@ const AppointmentModal = () => {
     }
   };
 
-  const getUser = async () => {
-    if (user) {
-      const authUser = JSON.parse(localStorage.getItem("user"));
-      setCustomerId(authUser._id);
-      setName(authUser.name);
-      setPhoneNumber(authUser?.contacts?.phoneNumber);
-      setInstagramNickname(authUser?.contacts?.intagramNickname);
-    }
-    return;
-  };
-
   useEffect(() => {
     getAppointmentData();
     getDateData();
-    getUser();
-  }, [user]);
+  }, []);
 
   return (
     <div className="fixed inset-x-0 z-50">
       <dialog
         id="appointmentModal"
         className={
-          (!isModalOpen && " max-h-0 opacity-0 ") +
-          " bg-secodary flex max-h-[85dvh] flex-col items-end overflow-y-scroll shadow-2xl transition-all duration-300"
+          (!isModalOpen ? " max-h-0 opacity-0 " : " max-h-[85dvh] ") +
+          " bg-secodary flex flex-col items-end overflow-y-scroll shadow-2xl transition-all duration-300"
         }
       >
         <form
@@ -100,7 +97,7 @@ const AppointmentModal = () => {
         >
           {!user && (
             <>
-              <label htmlFor="appointment-name" className="text-text-color">
+              <label htmlFor="name" className="text-text-color">
                 Имя
               </label>
               <input
@@ -109,12 +106,10 @@ const AppointmentModal = () => {
                 className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
-                id="appointment-name"
+                id="name"
+                name="name"
               />
-              <label
-                htmlFor="appointment-instagramNickname"
-                className="text-text-color"
-              >
+              <label htmlFor="instagramNickname" className="text-text-color">
                 Instagram
               </label>
               <input
@@ -123,12 +118,10 @@ const AppointmentModal = () => {
                 className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 value={phoneNumber}
-                id="appointment-instagramNickname"
+                id="instagramNickname"
+                name="instagramNickname"
               />
-              <label
-                htmlFor="appointment-phoneNumber"
-                className="text-text-color"
-              >
+              <label htmlFor="phoneNumber" className="text-text-color">
                 Номер телефона
               </label>
               <input
@@ -137,23 +130,21 @@ const AppointmentModal = () => {
                 className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
                 onChange={(e) => setInstagramNickname(e.target.value)}
                 value={instagramNickname}
-                id="appointment-phoneNumber"
+                id="phoneNumber"
+                name="phoneNumber"
               />
             </>
           )}
-          <label
-            htmlFor="appointment-service"
-            id="appointment-service"
-            className="text-text-color"
-          >
+          <label htmlFor="service" className="text-text-color">
             Услуга
           </label>
           <select
             className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
             disabled={!isLoaded}
-            id="appointment-service"
+            id="service"
             value={service}
             onChange={(e) => setService(e.target.value)}
+            name="service"
           >
             <option hidden value={""}>
               Выберите услугу
@@ -169,14 +160,15 @@ const AppointmentModal = () => {
                 </option>
               ))}
           </select>
-          <label htmlFor="appointment-date" className="text-text-color">
+          <label htmlFor="scheduleId" className="text-text-color">
             Дата и время
           </label>
           <select
-            id="appointment-scheduleId"
+            id="scheduleId"
             className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
             disabled={!isLoaded}
             value={scheduleId}
+            name="scheduleId"
             onChange={(e) => setScheduleId(e.target.value)}
           >
             <option hidden value="">
@@ -209,9 +201,7 @@ const AppointmentModal = () => {
                 <span key={item._id}>Длительность: {item.duration} мин.</span>
               ))}
           <div className="flex w-9/12 justify-between md:w-80">
-            <Button disabled={!isLoaded} onClick={handleSubmit}>
-              Отправить
-            </Button>
+            <Button disabled={!isLoaded}>Отправить</Button>
             <button
               className="block w-fit border-text-color py-[2px] text-text-color hover:border-y-2 hover:border-solid hover:py-0 focus:border-y-2 focus:border-solid focus:py-0"
               disabled={!isLoaded}

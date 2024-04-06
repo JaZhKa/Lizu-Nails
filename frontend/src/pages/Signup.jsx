@@ -15,7 +15,14 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(name, phoneNumber, instagramNickname, email, password);
+    const formData = new FormData(e.target);
+    const payload = Object.fromEntries(formData);
+    const contacts = {
+      instagramNickname,
+      phoneNumber,
+    };
+    payload.contacts = contacts;
+    await signup(payload);
   };
 
   return (
@@ -23,7 +30,7 @@ const Signup = () => {
       className="flex w-80 flex-col items-center gap-5 md:items-start"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="signup-name" className="text-text-color">
+      <label htmlFor="name" className="text-text-color">
         Имя
       </label>
       <input
@@ -32,34 +39,35 @@ const Signup = () => {
         type="text"
         onChange={(e) => setName(e.target.value)}
         value={name}
-        id="signup-name"
+        id="name"
+        name="name"
+        required
       />
-      <label
-        htmlFor="appointment-instagramNickname"
-        className="text-text-color"
-      >
+      <label htmlFor="instagramNickname" className="text-text-color">
         Instagram
       </label>
       <input
         type="text"
         disabled={!isLoaded}
         className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
-        onChange={(e) => setPhoneNumber(e.target.value)}
-        value={phoneNumber}
-        id="appointment-instagramNickname"
+        onChange={(e) => setInstagramNickname(e.target.value)}
+        value={instagramNickname}
+        id="instagramNickname"
+        name="instagramNickname"
       />
-      <label htmlFor="appointment-phoneNumber" className="text-text-color">
+      <label htmlFor="phoneNumber" className="text-text-color">
         Номер телефона
       </label>
       <input
         type="tel"
         disabled={!isLoaded}
         className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
-        onChange={(e) => setInstagramNickname(e.target.value)}
-        value={instagramNickname}
-        id="appointment-phoneNumber"
+        onChange={(e) => setPhoneNumber(e.target.value)}
+        value={phoneNumber}
+        id="phoneNumber"
+        name="phoneNumber"
       />
-      <label htmlFor="signup-email" className="text-text-color">
+      <label htmlFor="email" className="text-text-color">
         Email
       </label>
       <input
@@ -68,9 +76,11 @@ const Signup = () => {
         type="email"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
-        id="signup-email"
+        id="email"
+        name="email"
+        required
       />
-      <label htmlFor="signup-password" className="text-text-color">
+      <label htmlFor="password" className="text-text-color">
         Пароль
       </label>
       <input
@@ -79,7 +89,9 @@ const Signup = () => {
         type="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
-        id="signup-password"
+        id="password"
+        name="password"
+        required
       />
       <div className="flex w-9/12 justify-between md:w-80">
         <Button disabled={!isLoaded}>Регистрация</Button>
