@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useAppointment } from "../hooks/useAppointment";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "./elements/Button";
+import Input from "./elements/Input";
+import Select from "./elements/Select";
+import Options from "./elements/Options";
 import axios from "axios";
 import { toggleModal } from "../store/modal/isModal";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -97,45 +100,42 @@ const AppointmentModal = () => {
         >
           {!user && (
             <>
-              <label htmlFor="name" className="text-text-color">
-                Имя
-              </label>
-              <input
-                type="text"
+              <Input
+                htmlFor={"name"}
                 disabled={!isLoaded}
-                className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
+                type={"name"}
                 onChange={(e) => setName(e.target.value)}
                 value={name}
-                id="name"
-                name="name"
-              />
-              <label htmlFor="instagramNickname" className="text-text-color">
-                Instagram
-              </label>
-              <input
-                type="text"
+                id={"name"}
+                name={"name"}
+                required
+              >
+                Имя
+              </Input>
+              <Input
+                htmlFor={"instagramNickname"}
                 disabled={!isLoaded}
-                className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                value={phoneNumber}
-                id="instagramNickname"
-                name="instagramNickname"
-              />
-              <label htmlFor="phoneNumber" className="text-text-color">
-                Номер телефона
-              </label>
-              <input
-                type="tel"
-                disabled={!isLoaded}
-                className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
                 onChange={(e) => setInstagramNickname(e.target.value)}
                 value={instagramNickname}
-                id="phoneNumber"
-                name="phoneNumber"
-              />
+                id={"instagramNickname"}
+                name={"instagramNickname"}
+              >
+                Instagram
+              </Input>
+              <Input
+                htmlFor={"phoneNumber"}
+                disabled={!isLoaded}
+                type={"phoneNumber"}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={phoneNumber}
+                id={"phoneNumber"}
+                name={"phoneNumber"}
+              >
+                Номер телефона
+              </Input>
             </>
           )}
-          <label htmlFor="service" className="text-text-color">
+          {/* <label htmlFor="service" className="text-text-color">
             Услуга
           </label>
           <select
@@ -159,7 +159,19 @@ const AppointmentModal = () => {
                   {item.title}
                 </option>
               ))}
-          </select>
+          </select> */}
+          <Select htmlFor={'service'}
+            disabled={!isLoaded}
+            id={'service'}
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+            name={'service'}
+            required
+            hidOption={'Выберите услугу'}
+            option={serviceList}
+            valueKey={"_id"}
+            textKey={"title"}
+          >Услуга</Select>
           <label htmlFor="scheduleId" className="text-text-color">
             Дата и время
           </label>

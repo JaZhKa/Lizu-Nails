@@ -3,6 +3,7 @@ import { useLogin } from "../hooks/useLogin.jsx";
 import { useSelector } from "react-redux";
 import Button from "./../components/elements/Button.jsx";
 import Anchor from "../components/elements/Anchor.jsx";
+import Input from "../components/elements/Input.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,10 +13,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = new FormData(e.target);
     const payload = Object.fromEntries(formData);
-
     await login(payload);
   };
 
@@ -24,34 +23,32 @@ const Login = () => {
       className="flex w-80 flex-col items-center gap-5 md:items-start"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="text-text-color">
-        Email
-      </label>
-      <input
+      <Input
+        htmlFor={"email"}
         disabled={!isLoaded}
-        className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
-        type="email"
-        autoComplete="username"
+        type={"email"}
+        autoComplete={"username"}
         onChange={(e) => setEmail(e.target.value)}
         value={email}
-        id="email"
-        name="email"
+        id={"email"}
+        name={"email"}
         required
-      />
-      <label htmlFor="password" className="text-text-color">
-        Пароль
-      </label>
-      <input
+      >
+        Email
+      </Input>
+      <Input
+        htmlFor={"password"}
         disabled={!isLoaded}
-        className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
-        type="password"
-        autoComplete="current-password"
+        type={"password"}
+        autoComplete={"current-password"}
         onChange={(e) => setPassword(e.target.value)}
         value={password}
-        id="password"
-        name="password"
+        id={"password"}
+        name={"password"}
         required
-      />
+      >
+        Пароль
+      </Input>
       <div className="flex w-9/12 justify-between md:w-80">
         <Button disabled={!isLoaded}>Войти</Button>
         <Anchor to={"/signup"}>Регистрация</Anchor>
