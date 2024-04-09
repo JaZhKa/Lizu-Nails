@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "./elements/Button";
 import Input from "./elements/Input";
 import Select from "./elements/Select";
-import Options from "./elements/Options";
 import axios from "axios";
 import { toggleModal } from "../store/modal/isModal";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -15,7 +14,7 @@ const AppointmentModal = () => {
   const dispatch = useDispatch();
   const { user } = useAuthContext();
   const { makeAppointment, error } = useAppointment();
-  const [schedule, setSchedule] = useState("");
+  const [schedule, setScheduleList] = useState("");
   const [scheduleId, setScheduleId] = useState("");
   const [service, setService] = useState("");
   const [name, setName] = useState("");
@@ -46,43 +45,43 @@ const AppointmentModal = () => {
     toggleModal();
   };
 
-  const getAppointmentData = async () => {
+  const fetchData = async (url) => {
     try {
       await axios
-        .get("http://localhost:3000/api/service")
+        .get(`http://localhost:3000/api/${url}`)
         .catch((error) => {
           if (error.response.status !== 200) {
             console.log("Не удалось получить данные.");
           }
         })
         .then((res) => {
-          setServiceList(res.data);
+          switch (url) {
+            case url === "service":
+              setServiceList(res.data);
+              break;
+            case url === "schedule":
+              setScheduleList(res.data);
+              break;
+            default:
+              break;
+          }
         });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getDateData = async () => {
-    try {
-      await axios
-        .get("http://localhost:3000/api/schedule")
-        .catch((error) => {
-          if (error.response.status !== 200) {
-            console.log("Не удалось получить данные.");
-          }
-        })
-        .then((res) => {
-          setSchedule(res.data);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+  const formatDateTime = (date) => {
+    const options = { day: "numeric", month: "long" };
+    const time = new Date(date);
+    const hours = time.getHours();
+    const minutes = time.getMinutes().toString().padStart(2, "0");
+    return `${time.toLocaleString("ru-Ru", options)} | ${hours}:${minutes}`;
   };
 
   useEffect(() => {
-    getAppointmentData();
-    getDateData();
+    fetchData("service");
+    fetchData("schedule");
   }, []);
 
   return (
@@ -135,82 +134,49 @@ const AppointmentModal = () => {
               </Input>
             </>
           )}
-          {/* <label htmlFor="service" className="text-text-color">
-            Услуга
-          </label>
-          <select
-            className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
+          <Select
+            htmlFor={"service"}
             disabled={!isLoaded}
-            id="service"
+            id={"service"}
             value={service}
             onChange={(e) => setService(e.target.value)}
-            name="service"
-          >
-            <option hidden value={""}>
-              Выберите услугу
-            </option>
-            {Array.isArray(serviceList) &&
-              serviceList.map((item) => (
-                <option
-                  key={item._id}
-                  value={item._id}
-                  className="text-text-color"
-                >
-                  {item.title}
-                </option>
-              ))}
-          </select> */}
-          <Select htmlFor={'service'}
-            disabled={!isLoaded}
-            id={'service'}
-            value={service}
-            onChange={(e) => setService(e.target.value)}
-            name={'service'}
+            name={"service"}
             required
-            hidOption={'Выберите услугу'}
+            hidOption={"Выберите услугу"}
             option={serviceList}
             valueKey={"_id"}
             textKey={"title"}
-          >Услуга</Select>
-          <label htmlFor="scheduleId" className="text-text-color">
-            Дата и время
-          </label>
-          <select
-            id="scheduleId"
-            className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
-            disabled={!isLoaded}
-            value={scheduleId}
-            name="scheduleId"
-            onChange={(e) => setScheduleId(e.target.value)}
           >
-            <option hidden value="">
-              Выберите дату и время
-            </option>
-            {Array.isArray(schedule) &&
-              schedule.map((item) => (
-                <option key={item._id} value={item._id}>
-                  {new Date(item.start).toLocaleString("ru-RU", {
-                    day: "numeric",
-                    month: "long",
-                  })}
-                  &nbsp;|&nbsp;{new Date(item.start).getHours()}:
-                  {new Date(item.start).getMinutes() < 10
-                    ? `0${new Date(item.start).getMinutes()}`
-                    : new Date(item.start).getMinutes()}
-                </option>
-              ))}
-          </select>
+            Услуга
+          </Select>
+          <Select
+            htmlFor={"scheduleId"}
+            disabled={!isLoaded}
+            id={"scheduleId"}
+            value={scheduleId}
+            onChange={(e) => setScheduleId(e.target.value)}
+            name={"scheduleId"}
+            required
+            hidOption={"Выберите дату и время"}
+            option={schedule}
+            valueKey={"_id"}
+            textKey={(item) => formatDateTime(item.start)}
+          >
+            Дата и время
+          </Select>
           {Array.isArray(serviceList) &&
             serviceList
               .filter((item) => item._id === service)
               .map((item) => (
-                <span key={item._id}>Стоимость: {item.price} р.</span>
-              ))}
-          {Array.isArray(serviceList) &&
-            serviceList
-              .filter((item) => item._id === service)
-              .map((item) => (
-                <span key={item._id}>Длительность: {item.duration} мин.</span>
+                <div key={item._id} className="text-center">
+                  <span className="text-text-color">
+                    Стоимость: {item.price} р.
+                  </span>
+                  <br />
+                  <span className="text-text-color">
+                    Длительность: {item.duration} мин.
+                  </span>
+                </div>
               ))}
           <div className="flex w-9/12 justify-between md:w-80">
             <Button disabled={!isLoaded}>Отправить</Button>
