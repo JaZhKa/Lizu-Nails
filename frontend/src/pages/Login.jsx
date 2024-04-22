@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { useLogin } from "../hooks/useLogin.jsx";
 import { useSelector } from "react-redux";
+import { useInput } from "../hooks/useInput.jsx";
 import Button from "./../components/elements/Button.jsx";
 import Anchor from "../components/elements/Anchor.jsx";
 import Input from "../components/elements/Input.jsx";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const email = useInput("", { minLength: 3, isEmpty: true });
+  const password = useInput("", { minLength: 6, isEmpty: true });
   const { login, error } = useLogin();
   const isLoaded = useSelector((state) => state.isLoaded.value);
 
@@ -28,27 +28,37 @@ const Login = () => {
         disabled={!isLoaded}
         type={"email"}
         autoComplete={"username"}
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
+        onChange={(e) => email.onChange(e)}
+        onBlur={(e) => email.onBlur(e)}
+        value={email.value}
         id={"email"}
         name={"email"}
+        style={(email.isDirty && (email.isEmpty || email.minLengthError)) && "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"}
         required
       >
         Email
       </Input>
+      {email.isDirty && (email.isEmpty || email.minLengthError) && (
+        <div className="text-xs text-error">{email.errorMessage}</div>
+      )}
       <Input
         htmlFor={"password"}
         disabled={!isLoaded}
         type={"password"}
         autoComplete={"current-password"}
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
+        onChange={(e) => password.onChange(e)}
+        onBlur={(e) => password.onBlur(e)}
+        value={password.value}
         id={"password"}
         name={"password"}
+        style={(password.isDirty && (password.isEmpty || password.minLengthError)) && "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"}
         required
       >
         Пароль
       </Input>
+      {password.isDirty && (password.isEmpty || password.minLengthError) && (
+        <div className="text-xs text-error">{password.errorMessage}</div>
+      )}
       <div className="flex w-9/12 justify-between md:w-80">
         <Button disabled={!isLoaded}>Войти</Button>
         <Anchor to={"/signup"}>Регистрация</Anchor>

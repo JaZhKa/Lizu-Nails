@@ -1190,6 +1190,18 @@ html {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.outline {
+  outline-style: solid;
+}
+
+.outline-2 {
+  outline-width: 2px;
+}
+
+.outline-error\/50 {
+  outline-color: rgb(220 38 38 / 0.5);
+}
+
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -1287,8 +1299,32 @@ html {
   color: rgb(33 37 41 / var(--tw-text-opacity));
 }
 
+.focus\:outline-2:focus {
+  outline-width: 2px;
+}
+
+.focus\:outline-1:focus {
+  outline-width: 1px;
+}
+
 .focus\:outline-secondary:focus {
   outline-color: #CED4DA;
+}
+
+.focus\:outline-warning:focus {
+  outline-color: #fde047;
+}
+
+.focus\:outline-error:focus {
+  outline-color: #dc2626;
+}
+
+.focus\:outline-error\/30:focus {
+  outline-color: rgb(220 38 38 / 0.3);
+}
+
+.focus\:outline-error\/50:focus {
+  outline-color: rgb(220 38 38 / 0.5);
 }
 
 .active\:scale-90:active {

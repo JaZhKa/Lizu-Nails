@@ -6,10 +6,11 @@ const Input = ({ ...props }) => {
       </label>
       <input
         disabled={props.disabled}
-        className="h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"
+        className={props.style + " h-10 w-9/12 bg-secondary/50 px-2 text-text-color focus:outline-secondary disabled:text-secondary md:w-full"}
         type={props.type}
         autoComplete={props.autoComplete}
         onChange={props.onChange}
+        onBlur={props.onBlur}
         value={props.value}
         id={props.id}
         name={props.id}
