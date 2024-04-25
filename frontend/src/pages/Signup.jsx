@@ -1,16 +1,25 @@
-import { useState } from "react";
 import { useSignup } from "../hooks/useSignup.jsx";
 import { useSelector } from "react-redux";
+import { useInput } from "../hooks/useInput.jsx";
 import Button from "../components/elements/Button.jsx";
 import Anchor from "../components/elements/Anchor.jsx";
 import Input from "../components/elements/Input.jsx";
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [instagramNickname, setInstagramNickname] = useState("");
+  const email = useInput("", {
+    isEmail: true,
+    minLength: 6,
+    maxLength: 30,
+    isEmpty: true,
+  });
+  const password = useInput("", { maxLength: 30, minLength: 6, isEmpty: true });
+  const name = useInput("", { maxLength: 50, minLength: 2, isEmpty: true });
+  const instagramNickname = useInput("", { maxLength: 30, isEmpty: true });
+  const phoneNumber = useInput("", {
+    maxLength: 13,
+    minLength: 13,
+    isEmpty: true,
+  });
   const { signup, error } = useSignup();
   const isLoaded = useSelector((state) => state.isLoaded.value);
 
@@ -35,61 +44,136 @@ const Signup = () => {
         htmlFor={"name"}
         disabled={!isLoaded}
         type={"name"}
-        onChange={(e) => setName(e.target.value)}
-        value={name}
+        placeholder={"Имя"}
+        autoComplete={"given-name"}
+        onChange={(e) => name.onChange(e)}
+        onBlur={(e) => name.onBlur(e)}
+        value={name.value}
         id={"name"}
         name={"name"}
-        required
-      >
-        Имя
-      </Input>
-      <Input
-        htmlFor={"instagramNickname"}
-        disabled={!isLoaded}
-        onChange={(e) => setInstagramNickname(e.target.value)}
-        value={instagramNickname}
-        id={"instagramNickname"}
-        name={"instagramNickname"}
-      >
-        Instagram
-      </Input>
-      <Input
-        htmlFor={"phoneNumber"}
-        disabled={!isLoaded}
-        type={"phoneNumber"}
-        onChange={(e) => setPhoneNumber(e.target.value)}
-        value={phoneNumber}
-        id={"phoneNumber"}
-        name={"phoneNumber"}
-      >
-        Номер телефона
-      </Input>
-      <Input
-        htmlFor={"email"}
-        disabled={!isLoaded}
-        type={"email"}
-        autoComplete={"username"}
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-        id={"email"}
-        name={"email"}
+        style={
+          name.isDirty &&
+          (name.isEmpty || name.minLengthError || name.maxLengthError) &&
+          "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
+        }
         required
       >
         Email
       </Input>
+      {name.isDirty &&
+        (name.isEmpty || name.minLengthError || name.maxLengthError) && (
+          <div className="text-xs text-error">{name.errorMessage}</div>
+        )}
+      <Input
+        htmlFor={"instagramNickname"}
+        disabled={!isLoaded}
+        type={"instagramNickname"}
+        placeholder={"Instagram"}
+        onChange={(e) => instagramNickname.onChange(e)}
+        onBlur={(e) => instagramNickname.onBlur(e)}
+        value={instagramNickname.value}
+        id={"instagramNickname"}
+        name={"instagramNickname"}
+        style={
+          instagramNickname.isDirty &&
+          (instagramNickname.isEmpty || instagramNickname.maxLengthError) &&
+          "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
+        }
+        required
+      >
+        Instagram
+      </Input>
+      {instagramNickname.isDirty &&
+        (instagramNickname.isEmpty || instagramNickname.maxLengthError) && (
+          <div className="text-xs text-error">
+            {instagramNickname.errorMessage}
+          </div>
+        )}
+      <Input
+        htmlFor={"phoneNumber"}
+        disabled={!isLoaded}
+        type={"phoneNumber"}
+        placeholder={"+375292528440"}
+        onChange={(e) => phoneNumber.onChange(e)}
+        onBlur={(e) => phoneNumber.onBlur(e)}
+        value={phoneNumber.value}
+        id={"phoneNumber"}
+        name={"phoneNumber"}
+        style={
+          phoneNumber.isDirty &&
+          (phoneNumber.isEmpty ||
+            phoneNumber.minLengthError ||
+            phoneNumber.maxLengthError) &&
+          "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
+        }
+        required
+      >
+        Номер телефона
+      </Input>
+      {phoneNumber.isDirty &&
+        (phoneNumber.isEmpty ||
+          phoneNumber.minLengthError ||
+          phoneNumber.maxLengthError) && (
+          <div className="text-xs text-error">{phoneNumber.errorMessage}</div>
+        )}
+      <Input
+        htmlFor={"email"}
+        disabled={!isLoaded}
+        type={"email"}
+        placeholder={"example@email.com"}
+        autoComplete={"email"}
+        onChange={(e) => email.onChange(e)}
+        onBlur={(e) => email.onBlur(e)}
+        value={email.value}
+        id={"email"}
+        name={"email"}
+        style={
+          email.isDirty &&
+          (email.isEmpty ||
+            email.minLengthError ||
+            email.maxLengthError ||
+            email.isEmailError) &&
+          "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
+        }
+        required
+      >
+        Email
+      </Input>
+      {email.isDirty &&
+        (email.isEmpty ||
+          email.minLengthError ||
+          email.maxLengthError ||
+          email.isEmailError) && (
+          <div className="text-xs text-error">{email.errorMessage}</div>
+        )}
       <Input
         htmlFor={"password"}
         disabled={!isLoaded}
         type={"password"}
+        placeholder={"••••••"}
         autoComplete={"current-password"}
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
+        onChange={(e) => password.onChange(e)}
+        onBlur={(e) => password.onBlur(e)}
+        value={password.value}
         id={"password"}
         name={"password"}
+        style={
+          password.isDirty &&
+          (password.isEmpty ||
+            password.minLengthError ||
+            password.maxLengthError) &&
+          "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
+        }
         required
       >
         Пароль
       </Input>
+      {password.isDirty &&
+        (password.isEmpty ||
+          password.minLengthError ||
+          password.maxLengthError) && (
+          <div className="text-xs text-error">{password.errorMessage}</div>
+        )}
       <div className="flex w-9/12 justify-between md:w-80">
         <Button disabled={!isLoaded}>Регистрация</Button>
         <Anchor to={"/login"}>Вход</Anchor>

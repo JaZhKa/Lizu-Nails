@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 const useValidation = (value, validations) => {
   const [isEmpty, setIsEmpty] = useState(true);
   const [minLengthError, setMinLenthError] = useState(false);
+  const [maxLengthError, setMaxLenthError] = useState(false);
+  const [isEmailError, setIsEmailError] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -19,11 +21,29 @@ const useValidation = (value, validations) => {
         case "minLength":
           if (value.length < validations[validation]) {
             setMinLenthError(true);
-            setErrorMessage("Некорректная длина");
+            setErrorMessage("Слишком короткий");
           } else {
             setMinLenthError(false);
           }
           break;
+        case "maxLength":
+          if (value.length > validations[validation]) {
+            setMaxLenthError(true);
+            setErrorMessage("Слишком длинный");
+          } else {
+            setMaxLenthError(false);
+          }
+          break;
+        case "isEmail": {
+          const re = /^[A-Za-z0-9._]+@[A-Za-z0-9-]+[.][A-Za-z]{2,4}$/;
+          if (re.test(String(value).toLowerCase())) {
+            setIsEmailError(false);
+          } else {
+            setIsEmailError(true);
+            setErrorMessage("Это не email");
+          }
+        }
+        break;
         default:
           setErrorMessage("");
           break;
@@ -31,7 +51,7 @@ const useValidation = (value, validations) => {
     }
   }, [value]);
 
-  return { isEmpty, minLengthError, errorMessage };
+  return { isEmpty, minLengthError, maxLengthError, isEmailError, errorMessage };
 };
 
 export default useValidation;

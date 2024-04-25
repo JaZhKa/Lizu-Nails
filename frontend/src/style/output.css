@@ -1303,28 +1303,12 @@ html {
   outline-width: 2px;
 }
 
-.focus\:outline-1:focus {
-  outline-width: 1px;
+.focus\:outline-error\/50:focus {
+  outline-color: rgb(220 38 38 / 0.5);
 }
 
 .focus\:outline-secondary:focus {
   outline-color: #CED4DA;
-}
-
-.focus\:outline-warning:focus {
-  outline-color: #fde047;
-}
-
-.focus\:outline-error:focus {
-  outline-color: #dc2626;
-}
-
-.focus\:outline-error\/30:focus {
-  outline-color: rgb(220 38 38 / 0.3);
-}
-
-.focus\:outline-error\/50:focus {
-  outline-color: rgb(220 38 38 / 0.5);
 }
 
 .active\:scale-90:active {
@@ -1341,6 +1325,11 @@ html {
 .disabled\:text-secondary:disabled {
   --tw-text-opacity: 1;
   color: rgb(206 212 218 / var(--tw-text-opacity));
+}
+
+.disabled\:text-text-color:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(33 37 41 / var(--tw-text-opacity));
 }
 
 @media (min-width: 480px) {
