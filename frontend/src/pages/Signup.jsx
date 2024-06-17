@@ -13,7 +13,12 @@ const Signup = () => {
     isEmpty: true,
   });
   const password = useInput("", { maxLength: 30, minLength: 6, isEmpty: true });
-  const name = useInput("", { maxLength: 50, minLength: 2, isEmpty: true });
+  const name = useInput("", {
+    isName: true,
+    maxLength: 30,
+    minLength: 2,
+    isEmpty: true,
+  });
   const instagramNickname = useInput("", { maxLength: 30, isEmpty: true });
   const phoneNumber = useInput("", {
     maxLength: 13,
@@ -53,15 +58,21 @@ const Signup = () => {
         name={"name"}
         style={
           name.isDirty &&
-          (name.isEmpty || name.minLengthError || name.maxLengthError) &&
+          (name.isEmpty ||
+            name.minLengthError ||
+            name.maxLengthError ||
+            name.isNameError) &&
           "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
         }
         required
       >
-        Email
+        Имя
       </Input>
       {name.isDirty &&
-        (name.isEmpty || name.minLengthError || name.maxLengthError) && (
+        (name.isEmpty ||
+          name.minLengthError ||
+          name.maxLengthError ||
+          name.isNameError) && (
           <div className="text-xs text-error">{name.errorMessage}</div>
         )}
       <Input

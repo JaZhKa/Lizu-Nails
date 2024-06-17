@@ -45,7 +45,7 @@ const Login = () => {
             email.minLengthError ||
             email.maxLengthError ||
             email.isEmailError) &&
-          "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
+          "!focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
         }
         required
       >

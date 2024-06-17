@@ -6,6 +6,7 @@ const useValidation = (value, validations) => {
   const [maxLengthError, setMaxLenthError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isNameError, setIsNameError] = useState(true);
 
   useEffect(() => {
     for (const validation in validations) {
@@ -34,16 +35,28 @@ const useValidation = (value, validations) => {
             setMaxLenthError(false);
           }
           break;
-        case "isEmail": {
-          const re = /^[A-Za-z0-9._]+@[A-Za-z0-9-]+[.][A-Za-z]{2,4}$/;
-          if (re.test(String(value).toLowerCase())) {
-            setIsEmailError(false);
-          } else {
-            setIsEmailError(true);
-            setErrorMessage("Это не email");
+        case "isEmail":
+          {
+            const re = /^[A-Za-z0-9._]+@[A-Za-z0-9-]+[.][A-Za-z]{2,4}$/;
+            if (re.test(String(value).toLowerCase())) {
+              setIsEmailError(false);
+            } else {
+              setIsEmailError(true);
+              setErrorMessage("Это не email");
+            }
           }
-        }
-        break;
+          break;
+        case "isName":
+          {
+            const re = /^[А-Яа-яЁёA-Za-z\s]+$/;
+            if (re.test(String(value).toLowerCase())) {
+              setIsNameError(false);
+            } else {
+              setIsNameError(true);
+              setErrorMessage("Это не имя");
+            }
+          }
+          break;
         default:
           setErrorMessage("");
           break;
@@ -51,7 +64,14 @@ const useValidation = (value, validations) => {
     }
   }, [value]);
 
-  return { isEmpty, minLengthError, maxLengthError, isEmailError, errorMessage };
+  return {
+    isEmpty,
+    minLengthError,
+    maxLengthError,
+    isEmailError,
+    errorMessage,
+    isNameError,
+  };
 };
 
 export default useValidation;
