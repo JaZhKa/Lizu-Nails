@@ -19,7 +19,11 @@ const Signup = () => {
     minLength: 2,
     isEmpty: true,
   });
-  const instagramNickname = useInput("", { maxLength: 30, isEmpty: true });
+  const instagramNickname = useInput("", {
+    maxLength: 30,
+    minLength: 1,
+    isEmpty: true,
+  });
   const phoneNumber = useInput("", {
     maxLength: 13,
     minLength: 13,
@@ -95,7 +99,9 @@ const Signup = () => {
         Instagram
       </Input>
       {instagramNickname.isDirty &&
-        (instagramNickname.isEmpty || instagramNickname.maxLengthError) && (
+        (instagramNickname.isEmpty ||
+          instagramNickname.minLengthError ||
+          instagramNickname.maxLengthError) && (
           <div className="text-xs text-error">
             {instagramNickname.errorMessage}
           </div>
@@ -186,10 +192,33 @@ const Signup = () => {
           <div className="text-xs text-error">{password.errorMessage}</div>
         )}
       <div className="flex w-9/12 justify-between md:w-80">
-        <Button disabled={!isLoaded}>Регистрация</Button>
+        <Button
+          disabled={
+            !isLoaded ||
+            name.isEmpty ||
+            name.minLengthError ||
+            name.maxLengthError ||
+            name.isNameError ||
+            email.isEmpty ||
+            email.minLengthError ||
+            email.maxLengthError ||
+            email.isEmailError ||
+            instagramNickname.isEmpty ||
+            instagramNickname.minLengthError ||
+            instagramNickname.maxLengthError ||
+            phoneNumber.isEmpty ||
+            phoneNumber.minLengthError ||
+            phoneNumber.maxLengthError ||
+            password.isEmpty ||
+            password.minLengthError ||
+            password.maxLengthError
+          }
+        >
+          Регистрация
+        </Button>
         <Anchor to={"/login"}>Вход</Anchor>
       </div>
-      {error && <p className="text-xs text-error">{error}</p>}
+      {error && <p className="text-xs text-error">Не корректнае данные</p>}
     </form>
   );
 };

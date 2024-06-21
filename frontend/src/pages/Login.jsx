@@ -90,9 +90,12 @@ const Login = () => {
         <Button
           disabled={
             !isLoaded ||
+            email.isEmpty ||
             email.minLengthError ||
-            password.minLengthError ||
             email.maxLengthError ||
+            email.isEmailError ||
+            password.isEmpty ||
+            password.minLengthError ||
             password.maxLengthError
           }
         >
@@ -100,7 +103,7 @@ const Login = () => {
         </Button>
         <Anchor to={"/signup"}>Регистрация</Anchor>
       </div>
-      {error && <p className="text-xs text-error">{error}</p>}
+      {error && <p className="text-xs text-error">Не корректнае данные</p>}
     </form>
   );
 };
