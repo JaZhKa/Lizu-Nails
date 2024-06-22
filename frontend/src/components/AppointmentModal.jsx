@@ -7,6 +7,7 @@ import Select from "./elements/Select";
 import axios from "axios";
 import { toggleModal } from "../store/modal/isModal";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useInput } from "../hooks/useInput";
 
 const AppointmentModal = () => {
   const isLoaded = useSelector((state) => state.isLoaded.value);
@@ -21,6 +22,22 @@ const AppointmentModal = () => {
   const [serviceList, setServiceList] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [instagramNickname, setInstagramNickname] = useState("");
+  const nameValidation = useInput("", {
+    isName: true,
+    maxLength: 30,
+    minLength: 2,
+    isEmpty: true,
+  });
+  const instagramNicknameValidation = useInput("", {
+    maxLength: 30,
+    minLength: 1,
+    isEmpty: true,
+  });
+  const phoneNumberValidation = useInput("", {
+    maxLength: 13,
+    minLength: 13,
+    isEmpty: true,
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,10 +73,10 @@ const AppointmentModal = () => {
         })
         .then((res) => {
           switch (url) {
-            case url === "service":
+            case "service":
               setServiceList(res.data);
               break;
-            case url === "schedule":
+            case "schedule":
               setScheduleList(res.data);
               break;
             default:
@@ -103,35 +120,100 @@ const AppointmentModal = () => {
                 htmlFor={"name"}
                 disabled={!isLoaded}
                 type={"name"}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  nameValidation.onChange(e);
+                  setName(e.target.value);
+                }}
+                onBlur={(e) => nameValidation.onBlur(e)}
                 value={name}
                 id={"name"}
                 name={"name"}
+                placeholder={"Имя"}
+                autoComplete={"given-name"}
+                style={
+                  nameValidation.isDirty &&
+                  (nameValidation.isEmpty ||
+                    nameValidation.minLengthError ||
+                    nameValidation.maxLengthError ||
+                    nameValidation.isNameError) &&
+                  "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
+                }
                 required
               >
                 Имя
               </Input>
+              {nameValidation.isDirty &&
+                (nameValidation.isEmpty ||
+                  nameValidation.minLengthError ||
+                  nameValidation.maxLengthError ||
+                  nameValidation.isNameError) && (
+                  <div className="text-xs text-error">
+                    {nameValidation.errorMessage}
+                  </div>
+                )}
               <Input
                 htmlFor={"instagramNickname"}
                 disabled={!isLoaded}
-                onChange={(e) => setInstagramNickname(e.target.value)}
+                onChange={(e) => {
+                  setInstagramNickname(e.target.value);
+                  instagramNicknameValidation.onChange(e);
+                }}
                 value={instagramNickname}
                 id={"instagramNickname"}
                 name={"instagramNickname"}
+                type={"instagramNickname"}
+                placeholder={"Instagram"}
+                onBlur={(e) => instagramNicknameValidation.onBlur(e)}
+                style={
+                  instagramNickname.isDirty &&
+                  (instagramNickname.isEmpty ||
+                    instagramNickname.minLengthError ||
+                    instagramNickname.maxLengthError) &&
+                  "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
+                }
               >
                 Instagram
               </Input>
+              {instagramNicknameValidation.isDirty &&
+                (instagramNicknameValidation.isEmpty ||
+                  instagramNicknameValidation.minLengthError ||
+                  instagramNicknameValidation.maxLengthError) && (
+                  <div className="text-xs text-error">
+                    {instagramNicknameValidation.errorMessage}
+                  </div>
+                )}
               <Input
                 htmlFor={"phoneNumber"}
                 disabled={!isLoaded}
                 type={"phoneNumber"}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                placeholder={"+375292528440"}
+                onChange={(e) => {
+                  setPhoneNumber(e.target.value);
+                  phoneNumberValidation.onChange(e);
+                }}
+                onBlur={(e) => phoneNumberValidation.onBlur(e)}
                 value={phoneNumber}
                 id={"phoneNumber"}
                 name={"phoneNumber"}
+                style={
+                  phoneNumberValidation.isDirty &&
+                  (phoneNumberValidation.isEmpty ||
+                    phoneNumberValidation.minLengthError ||
+                    phoneNumberValidation.maxLengthError) &&
+                  "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
+                }
+                required
               >
                 Номер телефона
               </Input>
+              {phoneNumberValidation.isDirty &&
+                (phoneNumberValidation.isEmpty ||
+                  phoneNumberValidation.minLengthError ||
+                  phoneNumberValidation.maxLengthError) && (
+                  <div className="text-xs text-error">
+                    {phoneNumberValidation.errorMessage}
+                  </div>
+                )}
             </>
           )}
           <Select
@@ -179,7 +261,21 @@ const AppointmentModal = () => {
                 </div>
               ))}
           <div className="flex w-9/12 justify-between md:w-80">
-            <Button disabled={!isLoaded}>Отправить</Button>
+            <Button
+              disabled={
+                !isLoaded ||
+                nameValidation.isEmpty ||
+                nameValidation.minLengthError ||
+                nameValidation.maxLengthError ||
+                nameValidation.isNameError ||
+                instagramNicknameValidation.maxLengthError ||
+                phoneNumberValidation.isEmpty ||
+                phoneNumberValidation.minLengthError ||
+                phoneNumberValidation.maxLengthError
+              }
+            >
+              Отправить
+            </Button>
             <button
               className="block w-fit border-text-color py-[2px] text-text-color hover:border-y-2 hover:border-solid hover:py-0 focus:border-y-2 focus:border-solid focus:py-0"
               disabled={!isLoaded}

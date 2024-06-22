@@ -91,7 +91,8 @@ const Signup = () => {
         name={"instagramNickname"}
         style={
           instagramNickname.isDirty &&
-          (instagramNickname.isEmpty || instagramNickname.maxLengthError) &&
+          (instagramNickname.isEmpty || instagramNickname.minLengthError ||
+            instagramNickname.maxLengthError) &&
           "focus:outline-error/50 focus:outline-2 outline outline-2 outline-error/50"
         }
         required
