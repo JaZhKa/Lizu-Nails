@@ -845,10 +845,6 @@ html {
   min-height: calc(100dvh - 204px);
 }
 
-.min-h-\[calc\(100dvh_-_212px\)\] {
-  min-height: calc(100dvh - 212px);
-}
-
 .w-4\/5 {
   width: 80%;
 }

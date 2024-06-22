@@ -9,24 +9,13 @@ export const useAppointment = () => {
   const changeLoaded = useDispatch();
   const dispatch = useDispatch();
 
-  const makeAppointment = async (
-    name,
-    customerId,
-    scheduleId,
-    service,
-    instagramNickname,
-    phoneNumber,
-  ) => {
+  const makeAppointment = async (payload) => {
     changeLoaded(toggleLoaded());
     setError(null);
 
     await axios
       .post("http://localhost:3000/api/appointment", {
-        name,
-        customerId,
-        scheduleId,
-        service,
-        contacts: { instagramNickname, phoneNumber },
+        ...payload,
       })
       .catch((error) => {
         if (error.response.status !== 201) {

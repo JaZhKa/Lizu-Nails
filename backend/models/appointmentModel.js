@@ -12,6 +12,7 @@ const appointmentSchema = new Schema(
     customerId: {
       type: Schema.Types.ObjectId,
       ref: 'User',
+      default: '65ef380bdce05bbb9179819d'
     },
     masterId: {
       type: Schema.Types.ObjectId,

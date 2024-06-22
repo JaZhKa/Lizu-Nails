@@ -19,7 +19,7 @@ function App() {
       <Header />
       <main
         className={
-          "transition-all duration-300 ease-out flex min-h-[calc(100dvh_-_212px)] items-center justify-center" +
+          "transition-all duration-300 ease-out flex min-h-[calc(100dvh_-_204px)] sm:min-h-[calc(100dvh_-_188px)] md:min-h-[calc(100dvh_-_204px)] items-center justify-center" +
           (isActive ? " -mt-[18.71rem]" : " mt-0")
         }
       >
