@@ -1,6 +1,7 @@
 const BaseService = require('./baseService');
 const Appointment = require('../models/appointmentModel');
 const mongoose = require('mongoose');
+const appointmentNotice = require('../modules/emailer/appointmentNotice');
 
 class AppointmentService extends BaseService {
   constructor() {
@@ -36,6 +37,17 @@ class AppointmentService extends BaseService {
       return await this.model
         .findById(id)
         .populate(['customerId', 'masterId', 'scheduleId', 'service']);
+    } catch (error) {
+      throw error;
+    }
+  }
+  
+  async create(data) {
+    try {
+      const newModelInstance = new this.model(data);
+      const createdItem = await newModelInstance.save();
+      await appointmentNotice(await this.getOne(createdItem._id))
+      return createdItem;
     } catch (error) {
       throw error;
     }
