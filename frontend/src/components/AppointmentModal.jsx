@@ -264,14 +264,15 @@ const AppointmentModal = () => {
             <Button
               disabled={
                 !isLoaded ||
-                nameValidation.isEmpty ||
-                nameValidation.minLengthError ||
-                nameValidation.maxLengthError ||
-                nameValidation.isNameError ||
-                instagramNicknameValidation.maxLengthError ||
-                phoneNumberValidation.isEmpty ||
-                phoneNumberValidation.minLengthError ||
-                phoneNumberValidation.maxLengthError
+                (!user &&
+                  (nameValidation.isEmpty ||
+                    nameValidation.minLengthError ||
+                    nameValidation.maxLengthError ||
+                    nameValidation.isNameError ||
+                    instagramNicknameValidation.maxLengthError ||
+                    phoneNumberValidation.isEmpty ||
+                    phoneNumberValidation.minLengthError ||
+                    phoneNumberValidation.maxLengthError))
               }
             >
               Отправить

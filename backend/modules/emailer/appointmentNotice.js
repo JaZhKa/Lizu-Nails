@@ -15,8 +15,8 @@ const appointmentNotice = async (data) => {
       data?.scheduleId?.start
     ).toLocaleTimeString()}.</b></p>
             <p><b>Клиент:</b> ${data?.name}</p>
-            <p><b>Телефон:</b> ${data?.contacts?.phoneNumber}</p>
-            <p><b>Instagram:</b> ${data?.contacts?.instagramNickname}</p>
+            <p><b>Телефон:</b> ${data?.contacts?.phoneNumber ?? data?.customerId?.contacts?.phoneNumber}</p>
+            <p><b>Instagram:</b> ${data?.contacts?.instagramNickname ?? data?.customerId?.contacts?.instagramNickname}</p>
             <p><b>Услуга:</b> ${data?.service?.title}</p>
     `,
   });
