@@ -30,9 +30,9 @@ class UserService extends BaseService {
     const hash = await bcrypt.hash(data.password, salt);
     data.password = hash;
     const user = await this.create(data);
-    const token = this._createToken(user._id);
+    const accessToken = this._createToken(user._id);
 
-    return { user, token };
+    return { user, accessToken };
   }
 
   async logIn(email, password) {
@@ -52,13 +52,13 @@ class UserService extends BaseService {
       throw Error('Incorrect password');
     }
 
-    const token = this._createToken(user._id);
+    const accessToken = this._createToken(user._id);
 
-    return {user, token};
+    return {user, accessToken};
   }
 
   _createToken = (_id) => {
-    return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '30d' });
+    return jwt.sign({ _id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30m' });
   };
 }
 
